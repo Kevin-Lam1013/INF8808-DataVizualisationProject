@@ -1,11 +1,22 @@
 import * as d3 from 'd3';
-import React, {useRef, useEffect} from 'react';
+import React, {useRef, useEffect, useState} from 'react';
+import dataCsv from '../data/laLiga_2017-2018.csv'
 
-function BarChart({ margin,width, height, data }){
+function BarChart(){
     const ref = useRef();
 
+const margin = {top: 20, right: 30, bottom: 40, left: 90},
+    width = 460 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+    const [data, setData] = useState([{}])
 
-    useEffect(() => {
+    useEffect(() => {        
+        
+
+        d3.csv(dataCsv, (d) => {
+            setData(d)
+        })
+
         const svg = d3.select(ref.current)
             .attr("width", width)
             .attr("height", height)
@@ -35,7 +46,7 @@ function BarChart({ margin,width, height, data }){
     // Y axis
     const y = d3.scaleBand()
         .range([ 0, height ])
-        .domain(data.map(d => d.Squad))
+        //.domain(this.props.data.map(d => d.Squad))
         .padding(.1);
     svg.append("g")
         .call(d3.axisLeft(y))

@@ -6,9 +6,9 @@ export class PresentationPage extends Component {
         return(
             <div 
             className="presentation-page"
-            style={{maxWidth : '100%', maxHeight:'100%'}}>
+            style={{width : '100%', height:'100%'}}>
                 <img src={PresentationImage}
-                style={{maxWidth : '100%', maxHeight:'100%'}}/>
+                style={{width : '100%', height:'100%'}}/>
             </div>
         )   
     }

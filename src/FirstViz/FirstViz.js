@@ -1,7 +1,8 @@
 import React, { useEffect, useState} from "react";
 import styles from './styles.css'
 import * as d3 from 'd3'
-import BarChart from '../components/BarChart.js'
+import BarChart from './components/BarChart.js'
+import dataa from './data/laLiga_2017-2018.csv'
 
 function FirstViz(){
     
@@ -11,10 +12,10 @@ function FirstViz(){
 
     const [data, setData] = useState({})
 
-    d3.csv('./data/test.csv', function(dataaa){
-        //setData(d)
+    d3.csv(dataa, function(d){
+        setData(d)
         //console.log(data)
-        console.log(dataaa)
+        //console.log(dataaa)
     })
      
 
