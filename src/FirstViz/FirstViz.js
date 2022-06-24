@@ -16,7 +16,7 @@ function FirstViz(){
         d3.csv(dataCSV).then( function(d){
             setData(d)
         })
-    })
+    }, [])
 
    
     
@@ -25,8 +25,8 @@ function FirstViz(){
 
     return (
         <div className="App">
-            <BarChart data={data}  />
-            <PlayerSelector onSetSelected={setSelectedPlayer}/>
+            {/* <BarChart data={data}  />
+            <PlayerSelector onSetSelected={setSelectedPlayer}/> */}
         </div>
     );
 }

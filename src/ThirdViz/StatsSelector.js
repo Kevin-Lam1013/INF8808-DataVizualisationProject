@@ -7,7 +7,6 @@ export const STATS = [
 "Yellow Cards",
 "Red Cards",
 "xG",
-"G",
 "xA",
 "npxG+xA",
 "Shots Total",

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import * as d3 from "d3";
 import RadarChart from "../components/RadarChart.js";
 import Box from "@mui/material/Box";
@@ -13,6 +13,10 @@ import dataMbappeCSV from "./data/mbappe.csv";
 import dataManeCSV from "./data/mane.csv";
 
 function ThirdViz() {
+  // const benzemaRef = useRef();
+  // const mbappeRef = useRef();
+  // const maneRef = useRef();
+
   const [benzemaData, setBenzemaData] = useState([]);
   const [mbappeData, setMbappeData] = useState([]);
   const [maneData, setManeData] = useState([]);
@@ -70,6 +74,7 @@ function ThirdViz() {
         }
       });
       setBenzemaData(filteredData);
+      
     });
     d3.csv(dataMbappeCSV).then(function (d) {
       const filteredData = d.filter((stat) => {
@@ -92,12 +97,19 @@ function ThirdViz() {
   return (
     <div className="App row">
       <div className="col-9 ">
-        <div className="d-flex justify-content-center">
-          <RadarChart data={benzemaData}></RadarChart>
+        <div className="d-flex flex-column justify-content-center">
+          <h3>Karim Benzema</h3>
+          <RadarChart data={benzemaData} ></RadarChart>
         </div>
         <div className="d-flex justify-content-evenly">
-          <RadarChart data={mbappeData}></RadarChart>
-          <RadarChart data={maneData}></RadarChart>
+          <div className="d-flex flex-column justify-content-center">
+            <RadarChart data={mbappeData} ></RadarChart>
+            <h3>Kylian Mbappé</h3>
+          </div>
+          <div className="d-flex flex-column justify-content-center">
+            <RadarChart data={maneData} ></RadarChart>
+            <h3>Sadio Mané</h3>
+          </div>
         </div>
       </div>
       <div className="col-3">
@@ -112,14 +124,17 @@ function ThirdViz() {
                 label="Stat1"
                 onChange={handleChange1}
               >
-                {STATS.map((stat) => ( selectedStats.includes(stat) ? 
-                     <MenuItem key={stat} value={stat} disabled>
-                     {stat}
-                   </MenuItem> :
-                   <MenuItem key={stat} value={stat} >
-                     {stat}
-                   </MenuItem>
-                ))}
+                {STATS.map((stat) =>
+                  selectedStats.includes(stat) ? (
+                    <MenuItem key={stat} value={stat} disabled>
+                      {stat}
+                    </MenuItem>
+                  ) : (
+                    <MenuItem key={stat} value={stat}>
+                      {stat}
+                    </MenuItem>
+                  )
+                )}
               </Select>
             </FormControl>
           </Box>
@@ -134,14 +149,17 @@ function ThirdViz() {
                 label="Stat2"
                 onChange={handleChange2}
               >
-                {STATS.map((stat) => ( selectedStats.includes(stat) ? 
-                     <MenuItem key={stat} value={stat} disabled>
-                     {stat}
-                   </MenuItem> :
-                   <MenuItem key={stat} value={stat} >
-                     {stat}
-                   </MenuItem>
-                ))}
+                {STATS.map((stat) =>
+                  selectedStats.includes(stat) ? (
+                    <MenuItem key={stat} value={stat} disabled>
+                      {stat}
+                    </MenuItem>
+                  ) : (
+                    <MenuItem key={stat} value={stat}>
+                      {stat}
+                    </MenuItem>
+                  )
+                )}
               </Select>
             </FormControl>
           </Box>
@@ -156,14 +174,17 @@ function ThirdViz() {
                 label="Stat3"
                 onChange={handleChange3}
               >
-                {STATS.map((stat) => ( selectedStats.includes(stat) ? 
-                     <MenuItem key={stat} value={stat} disabled>
-                     {stat}
-                   </MenuItem> :
-                   <MenuItem key={stat} value={stat} >
-                     {stat}
-                   </MenuItem>
-                ))}
+                {STATS.map((stat) =>
+                  selectedStats.includes(stat) ? (
+                    <MenuItem key={stat} value={stat} disabled>
+                      {stat}
+                    </MenuItem>
+                  ) : (
+                    <MenuItem key={stat} value={stat}>
+                      {stat}
+                    </MenuItem>
+                  )
+                )}
               </Select>
             </FormControl>
           </Box>
@@ -178,14 +199,17 @@ function ThirdViz() {
                 label="Stat4"
                 onChange={handleChange4}
               >
-                {STATS.map((stat) => ( selectedStats.includes(stat) ? 
-                     <MenuItem key={stat} value={stat} disabled>
-                     {stat}
-                   </MenuItem> :
-                   <MenuItem key={stat} value={stat} >
-                     {stat}
-                   </MenuItem>
-                ))}
+                {STATS.map((stat) =>
+                  selectedStats.includes(stat) ? (
+                    <MenuItem key={stat} value={stat} disabled>
+                      {stat}
+                    </MenuItem>
+                  ) : (
+                    <MenuItem key={stat} value={stat}>
+                      {stat}
+                    </MenuItem>
+                  )
+                )}
               </Select>
             </FormControl>
           </Box>
@@ -200,14 +224,17 @@ function ThirdViz() {
                 label="Stat5"
                 onChange={handleChange5}
               >
-                {STATS.map((stat) => ( selectedStats.includes(stat) ? 
-                     <MenuItem key={stat} value={stat} disabled>
-                     {stat}
-                   </MenuItem> :
-                   <MenuItem key={stat} value={stat} >
-                     {stat}
-                   </MenuItem>
-                ))}
+                {STATS.map((stat) =>
+                  selectedStats.includes(stat) ? (
+                    <MenuItem key={stat} value={stat} disabled>
+                      {stat}
+                    </MenuItem>
+                  ) : (
+                    <MenuItem key={stat} value={stat}>
+                      {stat}
+                    </MenuItem>
+                  )
+                )}
               </Select>
             </FormControl>
           </Box>
@@ -222,14 +249,17 @@ function ThirdViz() {
                 label="Stat6"
                 onChange={handleChange6}
               >
-                {STATS.map((stat) => ( selectedStats.includes(stat) ? 
-                     <MenuItem key={stat} value={stat} disabled>
-                     {stat}
-                   </MenuItem> :
-                   <MenuItem key={stat} value={stat} >
-                     {stat}
-                   </MenuItem>
-                ))}
+                {STATS.map((stat) =>
+                  selectedStats.includes(stat) ? (
+                    <MenuItem key={stat} value={stat} disabled>
+                      {stat}
+                    </MenuItem>
+                  ) : (
+                    <MenuItem key={stat} value={stat}>
+                      {stat}
+                    </MenuItem>
+                  )
+                )}
               </Select>
             </FormControl>
           </Box>
