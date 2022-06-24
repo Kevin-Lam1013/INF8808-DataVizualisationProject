@@ -8,8 +8,15 @@ function PieChart(props) {
 
   const width = 450,
     height = 450,
-    margin = 40;
+    margin = 40,
+    legendRectSize = 25,
+    legendSpacing = 6;
   const radius = Math.min(width, height) / 2 - margin;
+  const legendLabel = {
+    Goal: "Goals scored",
+    Assist: "Goals assisted",
+    TeamGoal: "Goals scored by the team",
+  };
 
   const [d, setData] = useState([]);
 
@@ -29,7 +36,10 @@ function PieChart(props) {
       .attr("transform", `translate(${width / 2}, ${height / 2})`);
 
     // color scale
-    const color = d3.scaleOrdinal().range(d3.schemeSet2);
+    const color = d3
+      .scaleOrdinal()
+      .domain(["Goals scored", "Goals assisted", "Goals scored by the team"])
+      .range(d3.schemeSet2);
 
     // shape helper to build pie
     const arcGenerator = d3.arc().innerRadius(0).outerRadius(radius);
@@ -45,12 +55,12 @@ function PieChart(props) {
       .selectAll("pie")
       .data(data_ready)
       .join("path")
+      .transition()
+      .duration(1000)
       .attr("d", arcGenerator)
       .attr("fill", function (d) {
         return color(d.data[1]);
       })
-      .attr("stroke", "black")
-      .style("stroke-width", "2px")
       .style("opacity", 0.7);
 
     // Annotation
