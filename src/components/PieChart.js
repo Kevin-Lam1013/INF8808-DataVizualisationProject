@@ -29,7 +29,10 @@ function PieChart(props) {
       .attr("transform", `translate(${width / 2}, ${height / 2})`);
 
     // color scale
-    const color = d3.scaleOrdinal().range(["#808080", "#FFA500", "#adff2f"]);
+    const color = d3.scaleOrdinal().range(d3.schemeSet2);
+
+    // shape helper to build pie
+    const arcGenerator = d3.arc().innerRadius(0).outerRadius(radius);
 
     // pie position
     const pie = d3.pie().value(function (d) {
@@ -42,13 +45,27 @@ function PieChart(props) {
       .selectAll("pie")
       .data(data_ready)
       .join("path")
-      .attr("d", d3.arc().innerRadius(0).outerRadius(radius))
+      .attr("d", arcGenerator)
       .attr("fill", function (d) {
         return color(d.data[1]);
       })
       .attr("stroke", "black")
       .style("stroke-width", "2px")
       .style("opacity", 0.7);
+
+    // Annotation
+    svg
+      .selectAll("pie")
+      .data(data_ready)
+      .join("text")
+      .text(function (d) {
+        return d.data[1];
+      })
+      .attr("transform", function (d) {
+        return `translate(${arcGenerator.centroid(d)})`;
+      })
+      .style("text-anchor", "middle")
+      .style("font-size", 17);
 
     return;
   }, [props.data]);
