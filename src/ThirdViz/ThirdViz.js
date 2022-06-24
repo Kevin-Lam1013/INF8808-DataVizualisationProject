@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import * as d3 from "d3";
 import RadarChart from "../components/RadarChart.js";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 import "./styles.css";
 import { STATS } from "./StatsSelector.js";
 import dataBenzemaCSV from "./data/benzema.csv";
@@ -13,9 +13,7 @@ import dataMbappeCSV from "./data/mbappe.csv";
 import dataManeCSV from "./data/mane.csv";
 
 function ThirdViz() {
-  // const benzemaRef = useRef();
-  // const mbappeRef = useRef();
-  // const maneRef = useRef();
+
 
   const [benzemaData, setBenzemaData] = useState([]);
   const [mbappeData, setMbappeData] = useState([]);
