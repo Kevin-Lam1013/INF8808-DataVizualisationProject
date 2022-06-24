@@ -6,9 +6,11 @@ import PlayerSelector from '../components/PlayerSelector.js'
 import dataCSV from './data/laLiga_2017-2018.csv'
 
 function FirstViz(){
-    
+
     const [data, setData] = useState([])
     const [player, setPlayer] = useState("Mbappé")
+
+    
 
     useEffect(() => {
         d3.csv(dataCSV).then( function(d){
@@ -19,7 +21,6 @@ function FirstViz(){
    
     
     const setSelectedPlayer = (newSelected) =>{
-
     }
 
     return (

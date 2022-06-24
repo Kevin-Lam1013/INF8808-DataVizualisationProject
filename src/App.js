@@ -3,14 +3,12 @@ import './App.css';
 import { PresentationPage } from './PresentationPage/PresentationPage';
 import FirstViz from './FirstViz/FirstViz.js';
 import { SecondViz } from './SecondViz/SecondViz';
-import { ThirdViz } from './ThirdViz/ThirdViz';
-import * as d3 from 'd3'
-import {useState} from 'react'
+import ThirdViz from './ThirdViz/ThirdViz';
 
 function App() {
  
   return (
-   <div className="container">
+   <div className="container-fluid">
     <PresentationPage/>
     <FirstViz/>
     <SecondViz/>
