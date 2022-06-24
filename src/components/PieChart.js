@@ -9,8 +9,7 @@ function PieChart(props) {
   const width = 450,
     height = 450,
     margin = 40,
-    legendRectSize = 25,
-    legendSpacing = 6;
+    labelHeight = 18;
   const radius = Math.min(width, height) / 2 - margin;
   const legendLabel = {
     Goal: "Goals scored",
@@ -30,7 +29,7 @@ function PieChart(props) {
 
     const svg = d3
       .select(ref.current)
-      .attr("width", width)
+      .attr("width", width + 150)
       .attr("height", height)
       .append("g")
       .attr("transform", `translate(${width / 2}, ${height / 2})`);
@@ -76,6 +75,34 @@ function PieChart(props) {
       })
       .style("text-anchor", "middle")
       .style("font-size", 17);
+
+    // Legend
+    const legend = svg
+      .selectAll(".legend")
+      .data(data_ready)
+      .enter()
+      .append("g")
+      .attr("transform", function (d, i) {
+        return "translate(" + 220 + "," + (i * 15 + 20) + ")";
+      })
+      .attr("class", "legend");
+
+    legend
+      .append("rect")
+      .attr("width", 10)
+      .attr("height", 10)
+      .attr("fill", function (d) {
+        return color(d.data[1]);
+      });
+
+    legend
+      .append("text")
+      .text(function (d) {
+        return legendLabel[d.data[0]];
+      })
+      .style("font-size", 12)
+      .attr("y", 10)
+      .attr("x", 11);
 
     return;
   }, [props.data]);
