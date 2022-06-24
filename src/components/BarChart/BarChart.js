@@ -1,13 +1,14 @@
 import * as d3 from 'd3';
 import React, {useRef, useEffect, useState} from 'react';
 import _, {map} from 'underscore'
+import styles from '../BarChart/styles.css'
 
 function BarChart(props){
     const ref = useRef();
 
-const margin = {top: 20, right: 30, bottom: 40, left: 90},
-    width = 460 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+const margin = {top: 0, right: 30, bottom: 0, left: 100},
+    width = 600 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
 
 
     const [d, setData] = useState([])
@@ -29,11 +30,14 @@ const margin = {top: 20, right: 30, bottom: 40, left: 90},
             .attr("transform", `translate(${margin.left}, ${margin.top})`);
          //const svg = d3.select(ref.current)
          const x = d3.scaleLinear()
-         .domain([0, 100])
-         .range([ 0, 100]);
+         .domain([0,100])
+         .range([ 0, width*0.8]);
      svg.append("g")
          .attr("transform", `translate(0, ${height})`)
          .call(d3.axisBottom(x))
+         .select('.domain')
+         .attr('stroke-width',0)
+         .style('font-family','Roboto')
          .selectAll("text")
          .attr("transform", "translate(-10,0)rotate(-45)")
          .style("text-anchor", "end");
@@ -83,18 +87,9 @@ const margin = {top: 20, right: 30, bottom: 40, left: 90},
          .text(function (d) {
              return d.Pts;
          })
-         .style('font-size', '10px')
+         .style('font-size', '0.8rem')
          .style('font-family', 'Roboto');
-
-         svg.selectAll(".yAxis .tick").each(function(d) {
-            d3.select(this).select("text").style("fill", function() {
-                var value = props.data.filter(function(e) {
-                    return e.Squad === props.selectedTeam
-                })[0].Squad;
-                return value ? "gray" : "red";
-            })
-        })
-
+        
         return
 
     },[props.data])

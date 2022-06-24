@@ -10,7 +10,7 @@ import {useState} from 'react'
 function App() {
  
   return (
-   <div className="container">
+   <div className="App">
     <PresentationPage/>
     <FirstViz/>
     <SecondViz/>

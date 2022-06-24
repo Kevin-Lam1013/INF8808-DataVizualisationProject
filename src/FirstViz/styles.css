@@ -1,10 +1,57 @@
 .headerTitle {
-    width:100%;
-    height: 10%;
-    
-    text-align: center;
+   font-weight: bold;
+   font-size: 2rem;
 }
 
-div.headerTitle > p{
+.container {
+    display: flex;
+    flex-direction: row;
+}
 
+.rightContainer{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.barChart {
+    flex-grow: 1;
+}
+
+.playerSelector {
+    flex-grow: 0;
+}
+
+.firstviz {
+    width: 100vw;
+    height: 100vh;
+}
+
+.infoBox{
+    flex-grow: 1;
+    width:fit-content;
+    height: 0%;
+    border-radius: 15px;
+    border-width: 7px;
+    border-color: #6497B1;
+    border-style: solid;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    margin: auto;
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+.infoBox ul{
+    
+}
+
+.pieChart{
+    flex-grow: 1;
+}
+
+.barChart p{
+    font-weight: bold;
+    font-size: large;
 }
