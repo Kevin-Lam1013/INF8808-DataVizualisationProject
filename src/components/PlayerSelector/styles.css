@@ -43,3 +43,7 @@
 .player {
     flex-grow: 1;
 }
+
+.player p{
+    text-align: center;
+}

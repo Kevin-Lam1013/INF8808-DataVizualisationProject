@@ -66,8 +66,8 @@ function FirstViz() {
 
             {list}
           </div>
-          <div className="pieChart">
-            <p>Third box</p>
+          <div className="infoBox">
+            <p>Pie chart</p>
           </div>
         </div>
       </div>
