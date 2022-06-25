@@ -1,0 +1,46 @@
+Player,Nation,Pos,Age,MP,Starts,Min,90s,Gls,Ast,G-PK,PK,PKatt,CrdY,CrdR
+Alisson\7a2e46a8,br BRA,GK,28,54,54,4890,54.3,0,1,0,0,0,0,0
+Virgil van Dijk\e06683ca,nl NED,DF,30,51,51,4620,51.3,3,2,3,0,0,4,0
+Trent Alexander-Arnold\cd1acf9d,eng ENG,DF,22,47,47,4229,47.0,2,18,2,0,0,5,0
+Mohamed Salah\e342ad68,eg EGY,FW,29,51,45,4008,44.5,31,15,25,6,8,1,0
+Andrew Robertson\2e4f5f03,sct SCO,DF,27,47,44,3998,44.4,3,14,3,0,0,7,1
+Sadio Mané,sn SEN,FW,29,51,46,3927,43.6,23,3,23,0,0,8,0
+Jordan Henderson\935e6b8f,eng ENG,MF,31,57,43,3869,43.0,3,6,3,0,0,4,0
+Joël Matip\b217ef29,cm CMR,DF,29,43,42,3705,41.2,3,3,3,0,0,3,0
+Fabinho\7f3b388c,br BRA,MF,27,48,41,3690,41.0,8,1,5,3,3,9,0
+Diogo Jota\178ae8f8,pt POR,FW,24,55,39,3565,39.6,21,6,21,0,0,6,0
+Ibrahima Konaté\5ed9b537,fr FRA,DF,22,29,26,2490,27.7,3,1,3,0,0,4,0
+Thiago Alcántara\77e84962,es ESP,MF,30,39,26,2381,26.5,2,5,2,0,0,3,0
+Naby Keïta\f25c8e3a,gn GUI,MF,26,40,25,2083,23.1,4,3,4,0,0,4,0
+Roberto Firmino\4c370d81,br BRA,FW,29,35,17,1814,20.2,11,5,11,0,0,3,0
+Kostas Tsimikas\f315ca93,gr GRE,DF,25,26,19,1715,19.1,0,6,0,0,0,3,0
+Luis Díaz\4a1a9578,co COL,FW,24,26,18,1686,18.7,6,4,6,0,0,0,0
+Curtis Jones\4fb9c88f,eng ENG,MF,20,27,18,1528,17.0,1,3,1,0,0,1,0
+Alex Oxlade-Chamberlain\38c7feef,eng ENG,MFFW,27,29,17,1524,16.9,3,3,3,0,0,0,0
+James Milner\2f90f6b8,eng ENG,MFDF,35,39,14,1387,15.4,0,3,0,0,0,5,0
+Joe Gomez\7a11550b,eng ENG,DF,24,21,11,1046,11.6,0,1,0,0,0,3,0
+Takumi Minamino\f833a830,jp JPN,FWMF,26,24,9,1021,11.3,10,1,10,0,0,2,0
+Caoimhín Kelleher\62d7ef38,ie IRL,GK,22,8,8,750,8.3,0,0,0,0,0,1,0
+Divock Origi\43a166b4,be BEL,FW,26,18,5,607,6.7,6,3,6,0,0,0,0
+Harvey Elliott\c8387671,eng ENG,MF,18,11,6,587,6.5,1,0,1,0,0,0,0
+Tyler Morton\2bc28bb9,eng ENG,MF,18,9,6,545,6.1,0,0,0,0,0,2,0
+Neco Williams\dd323728,wls WAL,DF,20,8,4,390,4.3,0,2,0,0,0,0,0
+Conor Bradley\bbd67769,nir NIR,DF,18,5,3,262,2.9,0,1,0,0,0,0,0
+Kaide Gordon\19a9cb70,eng ENG,FW,16,4,3,241,2.7,1,0,1,0,0,0,0
+Nathaniel Phillips\515ebe8d,eng ENG,DF,24,3,1,136,1.5,0,0,0,0,0,0,0
+Adrián\f76e6b4e,es ESP,GK,34,1,1,90,1.0,0,0,0,0,0,0,0
+Elijah Dixon-Bonner\931bf61a,eng ENG,MF,20,2,1,64,0.7,0,0,0,0,0,0,0
+Harvey Blair\f6c16dd2,eng ENG,FW,17,1,1,54,0.6,0,0,0,0,0,0,0
+Max Woltman\0e5b695f,eng ENG,FW,17,2,1,46,0.5,0,0,0,0,0,0,0
+Billy Koumetio\866c67e9,fr FRA,DF,18,1,1,45,0.5,0,0,0,0,0,0,0
+Owen Beck\a011a1e9,wls WAL,DF,18,2,0,12,0.1,0,0,0,0,0,0,0
+Melkamu Frauendorf\5357221d,de GER,MF,17,1,0,10,0.1,0,0,0,0,0,0,0
+James Norris\788cd1c9,eng ENG,DF,18,1,0,1,0.0,0,0,0,0,0,0,0
+Isaac Mabaya\0d7be441,eng ENG,MF,16,0,0,,,,,,,,,
+Harvey Davies\fd08a24b,eng ENG,GK,17,0,0,,,,,,,,,
+Liam Hughes\54ae11f8,nir NIR,GK,19,0,0,,,,,,,,,
+James Balagizi\a5c8bb69,eng ENG,MF,17,0,0,,,,,,,,,
+Ben Woodburn\8aadeaef,wls WAL,FWMF,21,0,0,,,,,,,,,
+Jarrell Quansah\4125cb98,eng ENG,DF,18,0,0,,,,,,,,,
+Rhys Williams\012c975a,eng ENG,DF,20,0,0,,,,,,,,,
+Marcelo Pitaluga\b3cafda8,br BRA,GK,18,0,0,,,,,,,,,

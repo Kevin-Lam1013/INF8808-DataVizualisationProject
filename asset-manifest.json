@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/inf8808e_project/static/css/main.74eaf599.css",
+    "main.js": "/inf8808e_project/static/js/main.09ae54f2.js",
+    "static/js/787.b78dc185.chunk.js": "/inf8808e_project/static/js/787.b78dc185.chunk.js",
+    "static/media/PresentationPage.png": "/inf8808e_project/static/media/PresentationPage.42114870bc2f5cfbe4ae.png",
+    "static/media/benzema.png": "/inf8808e_project/static/media/benzema.35ab7c1cfa0e28755d16.png",
+    "static/media/mbappe.png": "/inf8808e_project/static/media/mbappe.e1018769c64cf2b4a63c.png",
+    "static/media/mane.png": "/inf8808e_project/static/media/mane.5023fd7dc92bf32bd41a.png",
+    "static/media/benzema.csv": "/inf8808e_project/static/media/benzema.e121a45d2a8a85d9be99.csv",
+    "static/media/mane.csv": "/inf8808e_project/static/media/mane.80986ba94cd828df1c74.csv",
+    "static/media/mbappe.csv": "/inf8808e_project/static/media/mbappe.0b60b388e15d5615b9a0.csv",
+    "static/media/liv_2021-2022.csv": "/inf8808e_project/static/media/liv_2021-2022.1bbd661bd041ef32f848.csv",
+    "static/media/psg_2021-2022.csv": "/inf8808e_project/static/media/psg_2021-2022.b8e10e34bee280175452.csv",
+    "static/media/logo.svg": "/inf8808e_project/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "static/media/real_2021-2022.csv": "/inf8808e_project/static/media/real_2021-2022.865dfd1b10cf886a1783.csv",
+    "static/media/france_2022.csv": "/inf8808e_project/static/media/france_2022.4d390e382329d8412d1a.csv",
+    "static/media/senegal_2022.csv": "/inf8808e_project/static/media/senegal_2022.206b942e87f7cfa3d950.csv",
+    "index.html": "/inf8808e_project/index.html",
+    "static/media/premierLeague_2021-2022.csv": "/inf8808e_project/static/media/premierLeague_2021-2022.38187886fda8d4e0d98c.csv",
+    "static/media/laLiga_2021-2022.csv": "/inf8808e_project/static/media/laLiga_2021-2022.55743237cfef676d0860.csv",
+    "static/media/ligue1_2021-2022.csv": "/inf8808e_project/static/media/ligue1_2021-2022.a2810b2eb0ba0b8dc5d7.csv",
+    "main.74eaf599.css.map": "/inf8808e_project/static/css/main.74eaf599.css.map",
+    "main.09ae54f2.js.map": "/inf8808e_project/static/js/main.09ae54f2.js.map",
+    "787.b78dc185.chunk.js.map": "/inf8808e_project/static/js/787.b78dc185.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.74eaf599.css",
+    "static/js/main.09ae54f2.js"
+  ]
+}
