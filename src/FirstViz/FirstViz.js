@@ -13,6 +13,7 @@ function FirstViz() {
   const [team, setTeam] = useState("Real Madrid");
   const [league, setLeague] = useState("La Liga");
   const [pieData, setPieData] = useState([]);
+  const [piePlayer, setPiePlayer] = useState("Karim Benzema");
 
   var playingTime1 = {
     MatchPlayed: 0,
@@ -35,7 +36,6 @@ function FirstViz() {
     });
 
     d3.csv(dataCSV[player]["team"]).then(function (d) {
-      console.log(d);
       const temp1 = {
         Goal: 0,
         Assist: 0,
@@ -43,19 +43,7 @@ function FirstViz() {
       };
 
       d.forEach((p) => {
-        let target1;
-        switch (player) {
-          case "benzema":
-            target1 = "Karim Benzema";
-            break;
-          case "mbappe":
-            target1 = "Kylian Mbappé";
-            break;
-          case "mane":
-            target1 = "Sadio Mané";
-            break;
-        }
-        if (p.Player === target1) {
+        if (p.Player === piePlayer) {
           temp1.Goal = parseInt(p.Gls);
           temp1.Assist = parseInt(p.Ast);
           playingTime1.MatchPlayed = parseInt(p.MP);
@@ -64,7 +52,6 @@ function FirstViz() {
           temp1.TeamGoal += parseInt(p.Gls);
         }
       });
-      console.log(temp1);
       setPieData(temp1);
     });
   }, [player]);
@@ -75,14 +62,17 @@ function FirstViz() {
       case "mbappe":
         setTeam("Paris S-G");
         setLeague("Ligue 1");
+        setPiePlayer("Kylian Mbappé");
         break;
       case "benzema":
         setTeam("Real Madrid");
         setLeague("La Liga");
+        setPiePlayer("Karim Benzema");
         break;
       case "mane":
         setTeam("Liverpool");
         setLeague("Premier League");
+        setPiePlayer("Sadio Mané");
         break;
     }
   };
@@ -108,7 +98,11 @@ function FirstViz() {
             {list}
           </div>
           <div className="infoBox">
-            <PieChart data={pieData} />
+            <div className="infoBoxTitle">
+              <p className="playerName">{piePlayer}</p>
+              <p className="teamName">with {team}</p>
+            </div>
+            <PieChart data={pieData} className="pieChart" />
           </div>
         </div>
       </div>
