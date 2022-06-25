@@ -5,12 +5,19 @@ import BarChart from "../components/BarChart/BarChart.js";
 import PlayerSelector from "../components/PlayerSelector/PlayerSelector.js";
 import YearSelector from "../components/YearSelector/YearSelector";
 import dataCSV from "./data/data.js";
+import PieChart from "../components/PieChart";
 
 function FirstViz() {
   const [data, setData] = useState([]);
   const [player, setPlayer] = useState("benzema");
   const [team, setTeam] = useState("Real Madrid");
   const [league, setLeague] = useState("La Liga");
+  const [pieData, setPieData] = useState([]);
+
+  var playingTime1 = {
+    MatchPlayed: 0,
+    MinPlayed: 0,
+  };
 
   const list = (
     <ul>
@@ -25,6 +32,40 @@ function FirstViz() {
   useEffect(() => {
     d3.csv(dataCSV[player]["ligue"]).then(function (d) {
       setData(d);
+    });
+
+    d3.csv(dataCSV[player]["team"]).then(function (d) {
+      console.log(d);
+      const temp1 = {
+        Goal: 0,
+        Assist: 0,
+        TeamGoal: 0,
+      };
+
+      d.forEach((p) => {
+        let target1;
+        switch (player) {
+          case "benzema":
+            target1 = "Karim Benzema";
+            break;
+          case "mbappe":
+            target1 = "Kylian Mbappé";
+            break;
+          case "mane":
+            target1 = "Sadio Mané";
+            break;
+        }
+        if (p.Player === target1) {
+          temp1.Goal = parseInt(p.Gls);
+          temp1.Assist = parseInt(p.Ast);
+          playingTime1.MatchPlayed = parseInt(p.MP);
+          playingTime1.MinPlayed = parseInt(p.Min);
+        } else if (p.Gls > 0) {
+          temp1.TeamGoal += parseInt(p.Gls);
+        }
+      });
+      console.log(temp1);
+      setPieData(temp1);
     });
   }, [player]);
 
@@ -67,7 +108,7 @@ function FirstViz() {
             {list}
           </div>
           <div className="infoBox">
-            <p>Pie chart</p>
+            <PieChart data={pieData} />
           </div>
         </div>
       </div>
