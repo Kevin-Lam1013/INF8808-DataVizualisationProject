@@ -3,22 +3,25 @@ import * as d3 from "d3";
 import PieChart from "../components/PieChart.js";
 import franceCSV from "./data/france_2022.csv";
 import senegalCSV from "./data/senegal_2022.csv";
+import styles from "./styles.css";
 
 function SecondViz() {
   const [data1, setData1] = useState([]);
   const [data2, setData2] = useState([]);
+  const [playingTime1, setPlayingTime1] = useState([]);
+  const [playingTime2, setPlayingTime2] = useState([]);
   const [target1, setPlayer1] = useState("Kylian Mbappé");
   const [target2, setPlayer2] = useState("Karim Benzema");
   const [team, setTeam] = useState("France");
   const [file, setFile] = useState(franceCSV);
-  var playingTime1 = {
-    MatchPlayed: 0,
-    MinPlayed: 0,
-  };
-  var playingTime2 = {
-    MatchPlayed: 0,
-    MinPlayed: 0,
-  };
+  // var playingTime1 = {
+  //   MatchPlayed: 0,
+  //   MinPlayed: 0,
+  // };
+  // var playingTime2 = {
+  //   MatchPlayed: 0,
+  //   MinPlayed: 0,
+  // };
 
   useEffect(() => {
     if (team === "France") {
@@ -40,12 +43,22 @@ function SecondViz() {
         TeamGoal: 0,
       };
 
+      const timeTemp1 = {
+        MatchPlayed: 0,
+        MinPlayed: 0,
+      };
+
+      const timeTemp2 = {
+        MatchPlayed: 0,
+        MinPlayed: 0,
+      };
+
       d.forEach((player) => {
         if (player.Player === target1) {
           temp1.Goal = parseInt(player.Gls);
           temp1.Assist = parseInt(player.Ast);
-          playingTime1.MatchPlayed = parseInt(player.MP);
-          playingTime1.MinPlayed = parseInt(player.Min);
+          timeTemp1.MatchPlayed = parseInt(player.MP);
+          timeTemp1.MinPlayed = parseInt(player.Min);
         } else if (player.Gls > 0) {
           temp1.TeamGoal += parseInt(player.Gls);
         }
@@ -54,8 +67,8 @@ function SecondViz() {
           if (player.Player === target2) {
             temp2.Goal = parseInt(player.Gls);
             temp2.Assist = parseInt(player.Ast);
-            playingTime2.MatchPlayed = parseInt(player.MP);
-            playingTime2.MinPlayed = parseInt(player.Min);
+            timeTemp2.MatchPlayed = parseInt(player.MP);
+            timeTemp2.MinPlayed = parseInt(player.Min);
           } else if (player.Gls > 0) {
             temp2.TeamGoal += parseInt(player.Gls);
           }
@@ -63,9 +76,11 @@ function SecondViz() {
       });
 
       setData1(temp1);
+      setPlayingTime1(timeTemp1);
 
       if (target2 !== "") {
         setData2(temp2);
+        setPlayingTime2(timeTemp2);
       }
     });
   });
@@ -91,20 +106,26 @@ function SecondViz() {
         Senegal
       </button>
 
-      <div>
-        <p>
-          {team === "France"
-            ? "Kylian Mbappé with France national team"
-            : "Sadio Mané with Senegal national team"}
-        </p>
-        <PieChart data={data1} />
-      </div>
-      {team === "France" && (
-        <div>
-          <p>Karim Benzema with France national team</p>
-          <PieChart data={data2} />
+      <div className="pieChartContainer">
+        <div className="infoBox">
+          <p>
+            {team === "France"
+              ? "Kylian Mbappé with France national team"
+              : "Sadio Mané with Senegal national team"}
+          </p>
+          <p>{`- ${playingTime1.MatchPlayed} appearances`}</p>
+          <p>{`- ${playingTime1.MinPlayed} minutes played`}</p>
+          <PieChart data={data1} />
         </div>
-      )}
+        {team === "France" && (
+          <div className="infoBox">
+            <p>Karim Benzema with France national team</p>
+            <p>{`- ${playingTime2.MatchPlayed} appearances`}</p>
+            <p>{`- ${playingTime2.MinPlayed} minutes played`}</p>
+            <PieChart data={data2} />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

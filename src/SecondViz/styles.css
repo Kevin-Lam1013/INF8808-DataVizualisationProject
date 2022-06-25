@@ -1,0 +1,21 @@
+.pieChartContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.infoBox{
+    flex-grow: 1;
+    width:fit-content;
+    height: fit-content;
+    border-radius: 15px;
+    border-width: 7px;
+    border-color: #6497B1;
+    border-style: solid;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    margin: auto;
+    padding-right: 5%;
+    padding-left: 5%;
+    margin-bottom: 5%;
+}
