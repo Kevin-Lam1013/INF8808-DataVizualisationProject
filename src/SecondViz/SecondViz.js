@@ -1,27 +1,22 @@
 import React, { Component, useEffect, useState } from "react";
 import * as d3 from "d3";
 import PieChart from "../components/PieChart.js";
+import Bracket from "../components/Bracket/Bracket.js";
 import franceCSV from "./data/france_2022.csv";
 import senegalCSV from "./data/senegal_2022.csv";
 import styles from "./styles.css";
+import tournamentBracket from "./data/dataBracket.js";
 
 function SecondViz() {
   const [data1, setData1] = useState([]);
   const [data2, setData2] = useState([]);
+  const [bracketData, setBracketData] = useState({});
   const [playingTime1, setPlayingTime1] = useState([]);
   const [playingTime2, setPlayingTime2] = useState([]);
   const [target1, setPlayer1] = useState("Kylian Mbappé");
   const [target2, setPlayer2] = useState("Karim Benzema");
   const [team, setTeam] = useState("France");
   const [file, setFile] = useState(franceCSV);
-  // var playingTime1 = {
-  //   MatchPlayed: 0,
-  //   MinPlayed: 0,
-  // };
-  // var playingTime2 = {
-  //   MatchPlayed: 0,
-  //   MinPlayed: 0,
-  // };
 
   useEffect(() => {
     if (team === "France") {
@@ -83,28 +78,32 @@ function SecondViz() {
         setPlayingTime2(timeTemp2);
       }
     });
+
+    setBracketData(tournamentBracket["France"]);
   });
 
   return (
     <div className="App">
-      <button
-        onClick={() => {
-          setTeam("France");
-          setPlayer1("Kylian Mbappé");
-          setPlayer2("Karim Benzema");
-        }}
-      >
-        France
-      </button>
-      <button
-        onClick={() => {
-          setTeam("Senegal");
-          setPlayer1("Sadio Mané");
-          setPlayer2("");
-        }}
-      >
-        Senegal
-      </button>
+      <div>
+        <button
+          onClick={() => {
+            setTeam("France");
+            setPlayer1("Kylian Mbappé");
+            setPlayer2("Karim Benzema");
+          }}
+        >
+          France
+        </button>
+        <button
+          onClick={() => {
+            setTeam("Senegal");
+            setPlayer1("Sadio Mané");
+            setPlayer2("");
+          }}
+        >
+          Senegal
+        </button>
+      </div>
 
       <div className="pieChartContainer">
         <div className="infoBox">
@@ -125,6 +124,10 @@ function SecondViz() {
             <PieChart data={data2} />
           </div>
         )}
+      </div>
+
+      <div className="bracketContainer">
+        <Bracket data={bracketData} />
       </div>
     </div>
   );

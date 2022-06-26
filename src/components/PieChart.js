@@ -2,7 +2,6 @@ import * as d3 from "d3";
 import React, { useRef, useEffect, useState } from "react";
 import _, { map } from "underscore";
 
-// Don't forget to add value in the pie
 function PieChart(props) {
   const ref = useRef();
 
