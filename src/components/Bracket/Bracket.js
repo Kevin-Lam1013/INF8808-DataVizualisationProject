@@ -2,6 +2,7 @@ import * as d3 from "d3";
 import React, { useRef, useEffect, useState } from "react";
 import _, { map } from "underscore";
 import styles from "../Bracket/styles.css";
+import franceBracket from "./france_bracket.json";
 
 function Bracket(props) {
   const ref = useRef();
@@ -18,6 +19,7 @@ function Bracket(props) {
   // adds labels to the nodes
   // *** Hardcoded to France ***
   const gameTemplate = (nodeData) => {
+    console.log("wefnweiofwofwefw");
     return (
       <div>
         <div className={`row ${nodeData.data.a === "France" ? " target" : ""}`}>
@@ -33,7 +35,7 @@ function Bracket(props) {
   };
 
   useEffect(() => {
-    if (_.isEqual(props.data, data)) {
+    if (_.isEqual(props.data, data) || _.isEqual(props.data, {})) {
       return;
     } else {
       setData(props.data);
@@ -41,66 +43,101 @@ function Bracket(props) {
     d3.select(ref.current).selectAll("*").remove();
 
     // Lines of the tournament bracket
+    var margin = { top: 40, right: 90, bottom: 50, left: 150 },
+      width = 900 - margin.left - margin.right,
+      height = 650 - margin.top - margin.bottom,
+      separationConstant = 1;
+
+    var treeData = franceBracket;
+
+    // line connector between nodes
     var line = d3
       .line()
       .x((d) => width - d.y)
       .y((d) => d.x)
       .curve(d3.curveStep);
 
-    // tree layout
+    // declares a tree layout and assigns the size
     var treemap = d3
       .tree()
       .size([height, width])
-      .separation((a, b) => (a.parent === b.parent ? 1 : separationConstant));
+      .separation((a, b) => (a.parent == b.parent ? 1 : separationConstant));
 
-    // assign data to nodes
-    var nodes = d3.hierarchy(props.data);
+    //  assigns the data to a hierarchy using parent-child relationships
+    var nodes = d3.hierarchy(treeData);
 
-    // map data for the tree layout
+    // maps the node data to the tree layout
     nodes = treemap(nodes);
 
-    const svg = d3
+    var svg = d3
       .select(ref.current)
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom);
 
-    const g = svg
+    var g = svg
       .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    // Links between nodes
-    g.selectAll(".link")
+    // adds the links between the nodes
+    var link = g
+      .selectAll(".link")
       .data(nodes.descendants().slice(1))
       .enter()
       .append("path")
       .attr("class", "link")
       .attr("d", (d) => line([d, d.parent]))
-      .classed("class", (d) => d.data.target);
+      .classed("win", (d) => d.data.win);
 
-    // labels for each nodes
-    d3.select("#labels")
-      .selectAll("g")
+    // adds labels to the nodes
+    function gameTemplate(d) {
+      return (
+        "" +
+        "<div class='row" +
+        (d.data.ascore > d.data.bscore ? " winner" : "") +
+        "'>" +
+        "<span class='cell name'>" +
+        d.data.a +
+        "</span>" +
+        "<span class='cell score'>" +
+        (d.data.ascore >= 0 ? d.data.ascore : "") +
+        "</span>" +
+        "</div>" +
+        "<div class='row" +
+        (d.data.bscore > d.data.ascore ? " winner" : "") +
+        "'>" +
+        "<span class='cell name'>" +
+        (d.data.b || "") +
+        "</span>" +
+        "<span class='cell score'>" +
+        (d.data.bscore >= 0 ? d.data.bscore : "") +
+        "</span>" +
+        "</div>"
+      );
+    }
+
+    var labels = d3
+      .select("#labels")
+      .selectAll("div")
       .data(nodes.descendants())
       .enter()
       .append("div")
       .classed("table", true)
-      .classed("played", (d) => d.data.aScore || d.data.bScore)
+      .classed("played", (d) => d.data.ascore || d.data.bscore)
+
       .style("left", (d) => width - d.y + margin.left - 100 + "px")
       .style(
         "top",
         (d) =>
           d.x + (!d.data.b ? 12 : 0) + (!d.data.children ? -4 : 0) + 10 + "px"
       )
-      .html(function (d) {
-        gameTemplate(d);
-      });
-
+      .html((d) => gameTemplate(d));
     return;
   }, [props.data]);
 
   return (
-    <div className="bracket">
+    <div className="bracket" id="container">
       <svg ref={ref}></svg>
+      <div id="labels"></div>
     </div>
   );
 }

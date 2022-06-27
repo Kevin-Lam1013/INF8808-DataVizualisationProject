@@ -80,7 +80,7 @@ function SecondViz() {
     });
 
     setBracketData(tournamentBracket["France"]);
-  });
+  }, []);
 
   return (
     <div className="App">
