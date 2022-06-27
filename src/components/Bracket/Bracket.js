@@ -3,13 +3,15 @@ import React, { useRef, useEffect, useState } from "react";
 import _, { map } from "underscore";
 import styles from "../Bracket/styles.css";
 
-// missing labels
+// need to reverse + put in bold target team + 90 degree angle for links
 function Bracket(props) {
   const ref = useRef();
   const [bracketData, setData] = useState({});
 
-  var width = 460;
-  var height = 460;
+  const width = 600,
+    height = 600,
+    labelHeight = 50,
+    labelWidth = 100;
 
   useEffect(() => {
     if (_.isEqual(props.data, bracketData)) {
@@ -22,13 +24,13 @@ function Bracket(props) {
     // append the svg object to the body of the page
     var svg = d3
       .select(ref.current)
-      .attr("width", width)
-      .attr("height", height)
+      .attr("width", width + 500)
+      .attr("height", height + 200)
       .append("g")
-      .attr("transform", "translate(40,0)"); // bit of margin on the left = 40
+      .attr("transform", "translate(150,0)"); // bit of margin on the left = 40
 
     // Create the cluster layout:
-    var cluster = d3.cluster().size([height, width - 100]); // 100 is the margin I will have on the right side
+    var cluster = d3.cluster().size([height, width + 100]); // 100 is the margin I will have on the right side
 
     // Give the data to this cluster layout:
     var root = d3.hierarchy(props.data, function (d) {
@@ -64,22 +66,45 @@ function Bracket(props) {
         );
       })
       .style("fill", "none")
-      .attr("stroke", "#ccc");
+      .attr("stroke", "#A3A6A8");
 
     // Add a circle for each node.
-    svg
+    var node = svg
       .selectAll("g")
       .data(root.descendants())
       .enter()
       .append("g")
       .attr("transform", function (d) {
-        return "translate(" + d.y + "," + d.x + ")";
-      })
-      .append("circle")
-      .attr("r", 7)
-      .style("fill", "#69b3a2")
+        return "translate(" + (d.y - 80) + "," + (d.x - 25) + ")";
+      });
+
+    node
+      .append("rect")
+      .attr("height", labelHeight)
+      .attr("width", labelWidth + 45)
+      .style("fill", "white")
       .attr("stroke", "black")
       .style("stroke-width", 2);
+
+    node
+      .append("text")
+      .attr("dx", -(labelWidth / 2) + 65)
+      .attr("dy", labelHeight / 2 - 5)
+      .attr("text-anchor", "start")
+      .style("font-size", "10px")
+      .text(function (d) {
+        return `${d.data.a} : ${d.data.aScore}`;
+      });
+
+    node
+      .append("text")
+      .attr("dx", -(labelWidth / 2) + 65)
+      .attr("dy", labelHeight - 5)
+      .attr("text-anchor", "start")
+      .style("font-size", "10px")
+      .text(function (d) {
+        return `${d.data.b} : ${d.data.bScore}`;
+      });
 
     return;
   }, [props.data]);

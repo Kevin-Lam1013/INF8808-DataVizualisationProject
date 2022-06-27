@@ -1,15 +1,15 @@
 {
     "a": "Italy",
     "b": "England",
-    "aScore": 1,
-    "bScore": 1,
+    "aScore": "1 (3)",
+    "bScore": "1 (2)",
     "target": false,
     "children": [
         {
             "a": "Italy",
             "b": "Spain",
-            "aScore": 4,
-            "bScore": 2,
+            "aScore": "1 (4)",
+            "bScore": "1 (2)",
             "target": false,
             "children": [
                 {
@@ -38,15 +38,15 @@
                 {
                     "a": "Switzerland",
                     "b": "Spain",
-                    "aScore": 1,
-                    "bScore": 3,
+                    "aScore": "1 (1)",
+                    "bScore": "1 (3)",
                     "target": false,
                     "children": [
                         {
                             "a": "France",
                             "b": "Switzerland",
-                            "aScore": 4,
-                            "bScore": 5,
+                            "aScore": "3 (4)",
+                            "bScore": "3 (5)",
                             "target": true
                         },
                         {
@@ -61,10 +61,10 @@
             ]
         },
         {
-            "a": "Italy",
-            "b": "Spain",
-            "aScore": 4,
-            "bScore": 2,
+            "a": "England",
+            "b": "Danmark",
+            "aScore": 2,
+            "bScore": 1,
             "target": false,
             "children": [
                 {
