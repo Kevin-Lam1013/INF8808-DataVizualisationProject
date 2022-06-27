@@ -71,25 +71,31 @@ function SecondViz() {
   });
 
   return (
-    <div className="App">
-      <button
-        onClick={() => {
-          setTeam("France");
-          setPlayer1("Kylian Mbappé");
-          setPlayer2("Karim Benzema");
-        }}
-      >
-        France
-      </button>
-      <button
-        onClick={() => {
-          setTeam("Senegal");
-          setPlayer1("Sadio Mané");
-          setPlayer2("");
-        }}
-      >
-        Senegal
-      </button>
+    <div className="App row" style={{ background: "#E7EFF6" }}>
+      <h1 className="p-3 fw-bold">National Team Comparison</h1>
+
+      <div className="d-flex justify-content-center">
+        <button
+          className="btn btn-outline-info"
+          onClick={() => {
+            setTeam("France");
+            setPlayer1("Kylian Mbappé");
+            setPlayer2("Karim Benzema");
+          }}
+        >
+          France
+        </button>
+        <button
+          className="btn btn-outline-info"
+          onClick={() => {
+            setTeam("Senegal");
+            setPlayer1("Sadio Mané");
+            setPlayer2("");
+          }}
+        >
+          Senegal
+        </button>
+      </div>
 
       <div>
         <p>

@@ -6,15 +6,12 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import "./styles.css";
 import { STATS } from "./StatsSelector.js";
 import dataBenzemaCSV from "./data/benzema.csv";
 import dataMbappeCSV from "./data/mbappe.csv";
 import dataManeCSV from "./data/mane.csv";
 
 function ThirdViz() {
-
-
   const [benzemaData, setBenzemaData] = useState([]);
   const [mbappeData, setMbappeData] = useState([]);
   const [maneData, setManeData] = useState([]);
@@ -72,7 +69,6 @@ function ThirdViz() {
         }
       });
       setBenzemaData(filteredData);
-      
     });
     d3.csv(dataMbappeCSV).then(function (d) {
       const filteredData = d.filter((stat) => {
@@ -93,29 +89,35 @@ function ThirdViz() {
   }, [selectedStats]);
 
   return (
-    <div className="App row">
-      <div className="col-9 ">
+    <div className="App bg-white row">
+      <div className="col-9">
         <div className="d-flex flex-column justify-content-center">
           <h3>Karim Benzema</h3>
-          <RadarChart data={benzemaData} ></RadarChart>
+          <RadarChart data={benzemaData}></RadarChart>
         </div>
         <div className="d-flex justify-content-evenly">
           <div className="d-flex flex-column justify-content-center">
-            <RadarChart data={mbappeData} ></RadarChart>
+            <RadarChart data={mbappeData}></RadarChart>
             <h3>Kylian Mbappé</h3>
           </div>
           <div className="d-flex flex-column justify-content-center">
-            <RadarChart data={maneData} ></RadarChart>
+            <RadarChart data={maneData}></RadarChart>
             <h3>Sadio Mané</h3>
           </div>
         </div>
       </div>
-      <div className="col-3">
-        <div className="container d-flex flex-column justify-content-evenly h-100 bg-light rounded-3">
+      <div className="col-3 p-0">
+        <div
+          className="container d-flex flex-column justify-content-evenly h-100 rounded-3"
+          style={{ background: "#6497B1" }}
+        >
           <Box>
             <FormControl fullWidth>
-              <InputLabel id="stat1-label">Stat 1</InputLabel>
+              <InputLabel className="bg-light" id="stat1-label">
+                Stat 1
+              </InputLabel>
               <Select
+                className="bg-light"
                 labelId="stat1-label"
                 id="stat1-select"
                 value={selectedStats[0]}
@@ -139,8 +141,11 @@ function ThirdViz() {
 
           <Box>
             <FormControl fullWidth>
-              <InputLabel id="stat2-label">Stat 2</InputLabel>
+              <InputLabel className="bg-light" id="stat2-label">
+                Stat 2
+              </InputLabel>
               <Select
+                className="bg-light"
                 labelId="stat2-label"
                 id="stat2-select"
                 value={selectedStats[1]}
@@ -164,8 +169,11 @@ function ThirdViz() {
 
           <Box>
             <FormControl fullWidth>
-              <InputLabel id="stat3-label">Stat 3</InputLabel>
+              <InputLabel className="bg-light" id="stat3-label">
+                Stat 3
+              </InputLabel>
               <Select
+                className="bg-light"
                 labelId="stat3-label"
                 id="stat3-select"
                 value={selectedStats[2]}
@@ -189,8 +197,11 @@ function ThirdViz() {
 
           <Box>
             <FormControl fullWidth>
-              <InputLabel id="stat4-label">Stat 4</InputLabel>
+              <InputLabel className="bg-light" id="stat4-label">
+                Stat 4
+              </InputLabel>
               <Select
+                className="bg-light"
                 labelId="stat4-label"
                 id="stat4-select"
                 value={selectedStats[3]}
@@ -214,8 +225,11 @@ function ThirdViz() {
 
           <Box>
             <FormControl fullWidth>
-              <InputLabel id="stat5-label">Stat 5</InputLabel>
+              <InputLabel className="bg-light" id="stat5-label">
+                Stat 5
+              </InputLabel>
               <Select
+                className="bg-light"
                 labelId="stat5-label"
                 id="stat5-select"
                 value={selectedStats[4]}
@@ -239,8 +253,11 @@ function ThirdViz() {
 
           <Box>
             <FormControl fullWidth>
-              <InputLabel id="stat6-label">Stat 6</InputLabel>
+              <InputLabel className="bg-light" id="stat6-label">
+                Stat 6
+              </InputLabel>
               <Select
+                className="bg-light rounded-3"
                 labelId="stat6-label"
                 id="stat6-select"
                 value={selectedStats[5]}

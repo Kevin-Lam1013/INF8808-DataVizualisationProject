@@ -3,7 +3,6 @@ import styles from "./styles.css";
 import * as d3 from "d3";
 import BarChart from "../components/BarChart/BarChart.js";
 import PlayerSelector from "../components/PlayerSelector/PlayerSelector.js";
-import YearSelector from "../components/YearSelector/YearSelector";
 import dataCSV from "./data/data.js";
 import PieChart from "../components/PieChart";
 
@@ -21,13 +20,14 @@ function FirstViz() {
   };
 
   const list = (
-    <ul>
+    <div>
       {dataCSV[team]["competitions"].map((e, i) => (
-        <li key={i}>
+        <div key={i}>
           {e.name} : <span style={{ color: "#FF4F00" }}>{e.place}</span>
-        </li>
+          <br />
+        </div>
       ))}
-    </ul>
+    </div>
   );
 
   useEffect(() => {
@@ -60,7 +60,7 @@ function FirstViz() {
     setPlayer(newSelected);
     switch (newSelected) {
       case "mbappe":
-        setTeam("Paris S-G");
+        setTeam("Paris Saint-Germain");
         setLeague("Ligue 1");
         setPiePlayer("Kylian Mbappé");
         break;
@@ -74,36 +74,39 @@ function FirstViz() {
         setLeague("Premier League");
         setPiePlayer("Sadio Mané");
         break;
+      default:
+        break;
     }
   };
 
   return (
-    <div className="firstviz">
-      <p className="headerTitle">Club Comparison</p>
-      <div className="container">
+    <div className="App bg-white row">
+      <h1 className="p-3 fw-bold">Club Comparison</h1>
+      <div className="playerSelector">
+        <PlayerSelector
+          onSetSelected={setSelectedPlayer}
+          selectedPlayer={player}
+        />
+      </div>
+
+      <div className="col-6">
         <div className="barChart">
-          <p>{`${league} ranking (points)`}</p>
+          <h2 className="p-2">
+            <u>{`${league} ranking (points)`}</u>
+          </h2>
           <BarChart data={data} selectedTeam={team} />
         </div>
-        <div className="rightContainer">
-          <div className="playerSelector">
-            <PlayerSelector
-              onSetSelected={setSelectedPlayer}
-              selectedPlayer={player}
-            />
-          </div>
-          <div className="infoBox">
-            <div className="headerTitle">{team}</div>
-
+      </div>
+      <div className="col-6 d-flex flex-column justify-content-center">
+          <div className="container w-50 m-2 border border-5 border-primary rounded-3"
+          style={{ background: "#E7EFF6" }}>
+            <h2 className="fw-bold">{team}</h2>
             {list}
           </div>
-          <div className="infoBox">
-            <div className="infoBoxTitle">
-              <p className="playerName">{piePlayer}</p>
-              <p className="teamName">with {team}</p>
-            </div>
+          <div className="container m-2 border border-5 border-primary rounded-3"
+          style={{ background: "#E7EFF6" }}>
+              <h2 className="playerName">{piePlayer} with {team}</h2>
             <PieChart data={pieData} className="pieChart" />
-          </div>
         </div>
       </div>
     </div>

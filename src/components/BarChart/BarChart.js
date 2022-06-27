@@ -6,8 +6,8 @@ import styles from "../BarChart/styles.css";
 function BarChart(props) {
   const ref = useRef();
 
-  const margin = { top: 0, right: 30, bottom: 0, left: 100 },
-    width = 600 - margin.left - margin.right,
+  const margin = { top: 0, right: 30, bottom: 0, left: 120 },
+    width = 800 - margin.left - margin.right,
     height = 600 - margin.top - margin.bottom;
 
   const [d, setData] = useState([]);
