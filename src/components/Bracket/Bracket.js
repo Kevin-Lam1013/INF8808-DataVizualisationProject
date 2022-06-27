@@ -3,103 +3,89 @@ import React, { useRef, useEffect, useState } from "react";
 import _, { map } from "underscore";
 import styles from "../Bracket/styles.css";
 
+// missing labels
 function Bracket(props) {
   const ref = useRef();
-  const [data, setData] = useState([]);
+  const [bracketData, setData] = useState({});
 
-  const margin = { top: 40, right: 90, bottom: 50, left: 150 },
-    width = 900 - margin.left - margin.right,
-    height = 650 - margin.top - margin.bottom,
-    separationConstant = 1;
-
-  const boxWidth = 150,
-    boxHeight = 40;
-
-  // adds labels to the nodes
-  // *** Hardcoded to France ***
-  const gameTemplate = (nodeData) => {
-    return (
-      <div>
-        <div className={`row ${nodeData.data.a === "France" ? " target" : ""}`}>
-          <span className="cell name">{nodeData.data.a}</span>
-          <span className="cell score">{nodeData.data.aScore}</span>
-        </div>
-        <div className={`row ${nodeData.data.b === "France" ? " target" : ""}`}>
-          <span className="cell name">{nodeData.data.b}</span>
-          <span className="cell score">{nodeData.data.bScore}</span>
-        </div>
-      </div>
-    );
-  };
+  var width = 460;
+  var height = 460;
 
   useEffect(() => {
-    if (_.isEqual(props.data, data)) {
+    if (_.isEqual(props.data, bracketData)) {
       return;
     } else {
       setData(props.data);
     }
     d3.select(ref.current).selectAll("*").remove();
 
-    // Lines of the tournament bracket
-    var line = d3
-      .line()
-      .x((d) => width - d.y)
-      .y((d) => d.x)
-      .curve(d3.curveStep);
-
-    // tree layout
-    var treemap = d3
-      .tree()
-      .size([height, width])
-      .separation((a, b) => (a.parent === b.parent ? 1 : separationConstant));
-
-    // assign data to nodes
-    var nodes = d3.hierarchy(props.data);
-
-    // map data for the tree layout
-    nodes = treemap(nodes);
-
-    const svg = d3
+    // append the svg object to the body of the page
+    var svg = d3
       .select(ref.current)
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom);
-
-    const g = svg
+      .attr("width", width)
+      .attr("height", height)
       .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      .attr("transform", "translate(40,0)"); // bit of margin on the left = 40
 
-    // Links between nodes
-    g.selectAll(".link")
-      .data(nodes.descendants().slice(1))
+    // Create the cluster layout:
+    var cluster = d3.cluster().size([height, width - 100]); // 100 is the margin I will have on the right side
+
+    // Give the data to this cluster layout:
+    var root = d3.hierarchy(props.data, function (d) {
+      return d.children;
+    });
+
+    cluster(root);
+
+    // Add the links between nodes:
+    svg
+      .selectAll("path")
+      .data(root.descendants().slice(1))
       .enter()
       .append("path")
-      .attr("class", "link")
-      .attr("d", (d) => line([d, d.parent]))
-      .classed("class", (d) => d.data.target);
+      .attr("d", function (d) {
+        return (
+          "M" +
+          d.y +
+          "," +
+          d.x +
+          "C" +
+          (d.parent.y + 50) +
+          "," +
+          d.x +
+          " " +
+          (d.parent.y + 150) +
+          "," +
+          d.parent.x + // 50 and 150 are coordinates of inflexion, play with it to change links shape
+          " " +
+          d.parent.y +
+          "," +
+          d.parent.x
+        );
+      })
+      .style("fill", "none")
+      .attr("stroke", "#ccc");
 
-    // labels for each nodes
-    d3.select("#labels")
+    // Add a circle for each node.
+    svg
       .selectAll("g")
-      .data(nodes.descendants())
+      .data(root.descendants())
       .enter()
-      .append("div")
-      .classed("table", true)
-      .classed("played", (d) => d.data.aScore || d.data.bScore)
-      .style("left", (d) => width - d.y + margin.left - 100 + "px")
-      .style(
-        "top",
-        (d) =>
-          d.x + (!d.data.b ? 12 : 0) + (!d.data.children ? -4 : 0) + 10 + "px"
-      )
-      .html(function (d) {
-        gameTemplate(d);
-      });
+      .append("g")
+      .attr("transform", function (d) {
+        return "translate(" + d.y + "," + d.x + ")";
+      })
+      .append("circle")
+      .attr("r", 7)
+      .style("fill", "#69b3a2")
+      .attr("stroke", "black")
+      .style("stroke-width", 2);
 
     return;
   }, [props.data]);
 
   return (
-    <div className="bracket">
+    <div id="container">
       <svg ref={ref}></svg>
     </div>
   );
