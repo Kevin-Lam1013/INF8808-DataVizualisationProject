@@ -11,7 +11,7 @@ function Bracket(props) {
   const width = 600,
     height = 600,
     labelHeight = 50,
-    labelWidth = 100;
+    labelWidth = 120;
 
   useEffect(() => {
     if (_.isEqual(props.data, bracketData)) {

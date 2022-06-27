@@ -10,7 +10,7 @@ import tournamentBracket from "./data/dataBracket.js";
 function SecondViz() {
   const [data1, setData1] = useState([]);
   const [data2, setData2] = useState([]);
-  const [bracketData, setBracketData] = useState({});
+  const [bracketData, setBracketData] = useState(tournamentBracket["France"]);
   const [playingTime1, setPlayingTime1] = useState([]);
   const [playingTime2, setPlayingTime2] = useState([]);
   const [target1, setPlayer1] = useState("Kylian Mbappé");
@@ -79,7 +79,7 @@ function SecondViz() {
       }
     });
 
-    setBracketData(tournamentBracket["France"]);
+    setBracketData(tournamentBracket[team]);
   });
 
   return (

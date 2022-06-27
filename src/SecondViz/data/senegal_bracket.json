@@ -1,60 +1,59 @@
-// add the good data for the senegal part
 {
-    "a": "Italy",
-    "b": "England",
-    "aScore": 1,
-    "bScore": 1,
+    "a": "Senegal",
+    "b": "Egypt",
+    "aScore": "0 (4)",
+    "bScore": "0 (2)",
     "target": false,
     "children": [
         {
-            "a": "Italy",
-            "b": "Spain",
-            "aScore": 4,
-            "bScore": 2,
+            "a": "Senegal",
+            "b": "Burkina Faso",
+            "aScore": "3",
+            "bScore": "1",
             "target": false,
             "children": [
                 {
-                    "a": "Belgium",
-                    "b": "Italy",
-                    "aScore": 1,
-                    "bScore": 2,
+                    "a": "Burkina Faso",
+                    "b": "Tunisia",
+                    "aScore": "1",
+                    "bScore": "0",
                     "target": false,
                     "children": [
                         {
-                            "a": "Belgium",
-                            "b": "Portugal",
-                            "aScore": 1,
-                            "bScore": 0,
+                            "a": "Burkina Faso",
+                            "b": "Gabon",
+                            "aScore": "1 (7)",
+                            "bScore": "1 (6)",
                             "target": false
                         },
                         {
-                            "a": "Italy",
-                            "b": "Austria",
-                            "aScore": 2,
-                            "bScore": 1,
+                            "a": "Tunisia",
+                            "b": "Nigeria",
+                            "aScore": "1",
+                            "bScore": "0",
                             "target": false
                         }
                     ]
                 },
                 {
-                    "a": "Switzerland",
-                    "b": "Spain",
-                    "aScore": 1,
-                    "bScore": 3,
+                    "a": "Senegal",
+                    "b": "Equatorial Guinea",
+                    "aScore": "3",
+                    "bScore": "1",
                     "target": false,
                     "children": [
                         {
-                            "a": "France",
-                            "b": "Switzerland",
-                            "aScore": 4,
-                            "bScore": 5,
-                            "target": true
+                            "a": "Senegal",
+                            "b": "Cape Verde",
+                            "aScore": "2",
+                            "bScore": "0",
+                            "target": false
                         },
                         {
-                            "a": "Croatia",
-                            "b": "Spain",
-                            "aScore": 3,
-                            "bScore": 5,
+                            "a": "Equatorial Guinea",
+                            "b": "Mali",
+                            "aScore": "0 (6)",
+                            "bScore": "0 (5)",
                             "target": false
                         }
                     ]
@@ -62,54 +61,54 @@
             ]
         },
         {
-            "a": "Italy",
-            "b": "Spain",
-            "aScore": 4,
-            "bScore": 2,
+            "a": "Egypt",
+            "b": "Cameroon",
+            "aScore": "0 (3)",
+            "bScore": "0 (1)",
             "target": false,
             "children": [
                 {
-                    "a": "Ukraine",
-                    "b": "England",
-                    "aScore": 0,
-                    "bScore": 4,
+                    "a": "Cameroon",
+                    "b": "Gambia",
+                    "aScore": "2",
+                    "bScore": "0",
                     "target": false,
                     "children": [
                         {
-                            "a": "Sweden",
-                            "b": "Ukraine",
-                            "aScore": 1,
-                            "bScore": 2,
+                            "a": "Cameroon",
+                            "b": "Comoros",
+                            "aScore": "2",
+                            "bScore": "1",
                             "target": false
                         },
                         {
-                            "a": "England",
-                            "b": "Germany",
-                            "aScore": 2,
-                            "bScore": 0,
+                            "a": "Gambia",
+                            "b": "Guinea",
+                            "aScore": "1",
+                            "bScore": "0",
                             "target": false
                         }
                     ]
                 },
                 {
-                    "a": "Czech Republic",
-                    "b": "Danmark",
-                    "aScore": 1,
-                    "bScore": 2,
+                    "a": "Egypt",
+                    "b": "Morocco",
+                    "aScore": "2",
+                    "bScore": "1",
                     "target": false,
                     "children": [
                         {
-                            "a": "Netherlands",
-                            "b": "Czech Republic",
-                            "aScore": 0,
-                            "bScore": 2,
+                            "a": "Egypt",
+                            "b": "Côte d'Ivoire",
+                            "aScore": "0 (6)",
+                            "bScore": "0 (5)",
                             "target": false
                         },
                         {
-                            "a": "Wales",
-                            "b": "Danmark",
-                            "aScore": 0,
-                            "bScore": 4,
+                            "a": "Equatorial Guinea",
+                            "b": "Mali",
+                            "aScore": "0 (5)",
+                            "bScore": "0 (4)",
                             "target": false
                         }
                     ]
