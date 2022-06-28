@@ -21,7 +21,7 @@ const dataCSV = {
         ligue : league,
         team : liv
     },
-    "Paris S-G" : {
+    "Paris Saint-Germain" : {
         competitions : [
             {name : "Ligue 1", place : 'Winners'},
             {name : "Coupe de France", place : 'Round of 16'},

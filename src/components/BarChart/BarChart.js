@@ -6,9 +6,9 @@ import styles from "../BarChart/styles.css";
 function BarChart(props) {
   const ref = useRef();
 
-  const margin = { top: 0, right: 30, bottom: 0, left: 100 },
-    width = 600 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+  const margin = { top: 0, right: 30, bottom: 0, left: 150 },
+    width = props.width - margin.left - margin.right,
+    height = props.height - margin.top - margin.bottom;
 
   const [d, setData] = useState([]);
 
@@ -27,10 +27,10 @@ function BarChart(props) {
       .style("border", "none")
       .append("g")
       .attr("transform", `translate(${margin.left}, ${margin.top})`);
-    //const svg = d3.select(ref.current)
+      
     const x = d3
       .scaleLinear()
-      .domain([0, 100])
+      .domain([0, props.maxDomain])
       .range([0, width * 0.8]);
     svg
       .append("g")
@@ -73,6 +73,22 @@ function BarChart(props) {
           return "#D9D9D9";
         }
       });
+
+    // Animation
+    // svg
+    //   .selectAll("rect")
+    //   .transition()
+    //   .duration(800)
+    //   .attr("x", function (d) {
+    //     return x(d.Pts);
+    //   })
+    //   .attr("width", function (d) {
+    //     return width - y(d.Pts);
+    //   })
+    //   .delay(function (d, i) {
+    //     console.log(i);
+    //     return i * 100;
+    //   });
 
     svg
       .selectAll("myRect")

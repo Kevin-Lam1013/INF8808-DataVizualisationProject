@@ -3,7 +3,6 @@ import styles from "./styles.css";
 import * as d3 from "d3";
 import BarChart from "../components/BarChart/BarChart.js";
 import PlayerSelector from "../components/PlayerSelector/PlayerSelector.js";
-import YearSelector from "../components/YearSelector/YearSelector";
 import dataCSV from "./data/data.js";
 import PieChart from "../components/PieChart";
 
@@ -14,6 +13,8 @@ function FirstViz() {
   const [league, setLeague] = useState("La Liga");
   const [pieData, setPieData] = useState([]);
   const [piePlayer, setPiePlayer] = useState("Karim Benzema");
+  const [matchsPlayed, setMatchsPlayed] = useState(0);
+  const [minutesPlayed, setMinutesPlayed] = useState(0);
 
   var playingTime1 = {
     MatchPlayed: 0,
@@ -21,13 +22,17 @@ function FirstViz() {
   };
 
   const list = (
-    <ul>
+    <div
+      className="d-flex flex-column h-75 justify-content-evenly"
+      style={{ fontSize: "24px" }}
+    >
       {dataCSV[team]["competitions"].map((e, i) => (
-        <li key={i}>
-          {e.name} : <span style={{ color: "#FF4F00" }}>{e.place}</span>
-        </li>
+        <div className="h4" key={i} style={{ fontSize: "1,4vw" }}>
+          <span className="fst-italic"> {e.name} :</span>{" "}
+          <span style={{ color: "#FF4F00" }}>{e.place} </span>
+        </div>
       ))}
-    </ul>
+    </div>
   );
 
   useEffect(() => {
@@ -37,15 +42,15 @@ function FirstViz() {
 
     d3.csv(dataCSV[player]["team"]).then(function (d) {
       const temp1 = {
-        Goal: 0,
-        Assist: 0,
+        PlayerGoal: 0,
         TeamGoal: 0,
       };
 
       d.forEach((p) => {
         if (p.Player === piePlayer) {
-          temp1.Goal = parseInt(p.Gls);
-          temp1.Assist = parseInt(p.Ast);
+          setMatchsPlayed(parseInt(p.MP));
+          setMinutesPlayed(parseInt(p.Min));
+          temp1.PlayerGoal = parseInt(p.Gls) + parseInt(p.Ast);
           playingTime1.MatchPlayed = parseInt(p.MP);
           playingTime1.MinPlayed = parseInt(p.Min);
         } else if (p.Gls > 0) {
@@ -60,7 +65,7 @@ function FirstViz() {
     setPlayer(newSelected);
     switch (newSelected) {
       case "mbappe":
-        setTeam("Paris S-G");
+        setTeam("Paris Saint-Germain");
         setLeague("Ligue 1");
         setPiePlayer("Kylian Mbappé");
         break;
@@ -74,37 +79,69 @@ function FirstViz() {
         setLeague("Premier League");
         setPiePlayer("Sadio Mané");
         break;
+      default:
+        break;
     }
   };
 
   return (
-    <div className="firstviz">
-      <p className="headerTitle">Club Comparison</p>
-      <div className="container">
-        <div className="barChart">
-          <p>{`${league} ranking (points)`}</p>
-          <BarChart data={data} selectedTeam={team} />
-        </div>
-        <div className="rightContainer">
-          <div className="playerSelector">
-            <PlayerSelector
-              onSetSelected={setSelectedPlayer}
-              selectedPlayer={player}
-            />
-          </div>
-          <div className="infoBox">
-            <div className="headerTitle">{team}</div>
+    <div className="App bg-white row">
+      <h1 className="p-3 fw-bold">Club Comparison</h1>
+      <div className="playerSelector">
+        <PlayerSelector
+          onSetSelected={setSelectedPlayer}
+          selectedPlayer={player}
+        />
+      </div>
 
-            {list}
-          </div>
-          <div className="infoBox">
-            <div className="infoBoxTitle">
-              <p className="playerName">{piePlayer}</p>
-              <p className="teamName">with {team}</p>
-            </div>
-            <PieChart data={pieData} className="pieChart" />
-          </div>
+      <div className="col-6 pb-3">
+        <div className="barChart">
+          <h2 className="p-2">
+            <u>{`${league} ranking (points)`}</u>
+          </h2>
+          <BarChart data={data} selectedTeam={team} width={850} height={500} maxDomain={100} />
         </div>
+      </div>
+      <div className="col-6 pb-3 d-flex flex-row ">
+        <div
+          className=" align-self-end container h-50 m-2 border border-5 border-primary rounded-3"
+          style={{ background: "#E7EFF6" }}
+        >
+          <h2 className="pt-1 pb-2" style={{ color: "#095F78" }}>
+            {team}
+          </h2>
+          {list}
+        </div>
+
+        <div
+          className="align-self-end flex-wrap container m-2 border border-5 border-primary rounded-3"
+          style={{ background: "#E7EFF6", height:"85%" }}
+        >
+          <h2 className="pt-1" style={{ color: "#095F78" }}>
+            {piePlayer} <br />
+            <span className="fst-italic h5">with {team}</span>
+          </h2>
+
+          <ul className="w-75 flex-wrap float-end text-start">
+            <li>
+              <h5 className="">
+                <span className="fw-bold" style={{ color: "#FF4F00" }}>
+                  {matchsPlayed}
+                </span> appearances
+              </h5>
+            </li>
+            <li>
+              <h5 className="">
+                <span className="fw-bold" style={{ color: "#FF4F00" }}>
+                  {minutesPlayed}
+                </span> minutes played
+              </h5>
+            </li>
+          </ul>
+
+          <PieChart data={pieData} />
+        </div>
+        <br />
       </div>
     </div>
   );

@@ -6,15 +6,13 @@ import _, { map } from "underscore";
 function PieChart(props) {
   const ref = useRef();
 
-  const width = 450,
-    height = 450,
-    margin = 40,
-    labelHeight = 18;
+  const width = 300,
+    height = 300,
+    margin = 25;
   const radius = Math.min(width, height) / 2 - margin;
   const legendLabel = {
-    Goal: "Goals scored",
-    Assist: "Goals assisted",
-    TeamGoal: "Goals scored by the team",
+    PlayerGoal: "Goals scored or assisted",
+    TeamGoal: "Other goals scored by the team",
   };
 
   const [d, setData] = useState([]);
@@ -29,16 +27,19 @@ function PieChart(props) {
 
     const svg = d3
       .select(ref.current)
-      .attr("width", width + 150)
+      .attr("width", width)
       .attr("height", height)
       .append("g")
-      .attr("transform", `translate(${width / 2}, ${height / 2})`);
+      .attr("transform", `translate(${width / 2 }, ${height / 2 - margin})`);
 
     // color scale
     const color = d3
       .scaleOrdinal()
-      .domain(["Goals scored", "Goals assisted", "Goals scored by the team"])
-      .range(d3.schemeSet2);
+      .domain([
+        "Goals scored or assisted",
+        "Goals scored by the team",
+      ])
+      .range(["#FF4F00", "#D9D9D9"]);
 
     // shape helper to build pie
     const arcGenerator = d3.arc().innerRadius(0).outerRadius(radius);
@@ -54,13 +55,13 @@ function PieChart(props) {
       .selectAll("pie")
       .data(data_ready)
       .join("path")
-      .transition()
-      .duration(1000)
+      // .transition()
+      // .duration(1000)
       .attr("d", arcGenerator)
       .attr("fill", function (d) {
         return color(d.data[1]);
       })
-      .style("opacity", 0.7);
+      // .style("opacity", 1);
 
     // Annotation
     svg
@@ -83,7 +84,7 @@ function PieChart(props) {
       .enter()
       .append("g")
       .attr("transform", function (d, i) {
-        return "translate(" + 220 + "," + (i * 15 + 20) + ")";
+        return `translate( ${-70} , ${i * 15 + 130}) `;
       })
       .attr("class", "legend");
 

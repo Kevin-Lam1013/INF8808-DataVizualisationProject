@@ -10,8 +10,8 @@ function PlayerSelector(props) {
   }
 
   return (
-    <div className="selector">
-      <div className="player">
+    <div className="d-flex justify-content-center">
+      <div className="p-3">
         <div
           className={`circle mbappe ${
             selectedPlayer === "mbappe" ? "selected" : ""
@@ -21,7 +21,7 @@ function PlayerSelector(props) {
         <p>Kylian Mbappé</p>
       </div>
 
-      <div className="player">
+      <div className="p-3">
         <div
           className={`circle benzema ${
             selectedPlayer === "benzema" ? "selected" : ""
@@ -30,7 +30,7 @@ function PlayerSelector(props) {
         ></div>
         <p>Karim Benzema</p>
       </div>
-      <div className="player">
+      <div className="p-3">
         <div
           className={`circle mane ${
             selectedPlayer === "mane" ? "selected" : ""
