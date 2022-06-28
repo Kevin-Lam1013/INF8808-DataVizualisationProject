@@ -27,7 +27,7 @@ function Bracket(props) {
       .attr("width", width + 500)
       .attr("height", height + 200)
       .append("g")
-      .attr("transform", "translate(150,0)"); // bit of margin on the left = 40
+      .attr("transform", "translate(200,0)"); // bit of margin on the left = 40
 
     // Create the cluster layout:
     var cluster = d3.cluster().size([height, width + 100]); // 100 is the margin I will have on the right side
@@ -48,19 +48,19 @@ function Bracket(props) {
       .attr("d", function (d) {
         return (
           "M" +
-          d.y +
-          "," +
-          d.x +
-          "C" +
-          (d.parent.y + 50) +
+          (width - d.y) +
           "," +
           d.x +
           " " +
-          (d.parent.y + 150) +
+          (width - d.parent.y) +
+          "," +
+          d.x +
+          " " +
+          (width - d.parent.y) +
           "," +
           d.parent.x + // 50 and 150 are coordinates of inflexion, play with it to change links shape
           " " +
-          d.parent.y +
+          (width - d.parent.y) +
           "," +
           d.parent.x
         );
@@ -75,7 +75,7 @@ function Bracket(props) {
       .enter()
       .append("g")
       .attr("transform", function (d) {
-        return "translate(" + (d.y - 80) + "," + (d.x - 25) + ")";
+        return "translate(" + (width - d.y - 80) + "," + (d.x - 25) + ")";
       });
 
     node
@@ -84,6 +84,9 @@ function Bracket(props) {
       .attr("width", labelWidth + 45)
       .style("fill", "white")
       .attr("stroke", "black")
+      .attr("transform", function (d) {
+        return "translate(0,-7)";
+      })
       .style("stroke-width", 2);
 
     node

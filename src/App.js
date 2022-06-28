@@ -8,10 +8,9 @@ import ThirdViz from "./ThirdViz/ThirdViz";
 function App() {
   return (
     <div className="container-fluid">
-      <PresentationPage />
-      <FirstViz />
+     
       <SecondViz />
-      <ThirdViz />
+      
     </div>
   );
 }
