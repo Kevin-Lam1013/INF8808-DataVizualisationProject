@@ -36,7 +36,7 @@ function Bracket(props) {
       .attr("transform", "translate(200,0)"); // bit of margin on the left = 40
 
     // Create the cluster layout:
-    var cluster = d3.cluster().size([height, width + 100]); // 100 is the margin I will have on the right side
+    var cluster = d3.cluster().size([height, width - 25]); // 100 is the margin I will have on the right side
 
     // Give the data to this cluster layout:
     var root = d3.hierarchy(props.data, function (d) {
@@ -87,7 +87,7 @@ function Bracket(props) {
     node
       .append("rect")
       .attr("height", labelHeight)
-      .attr("width", labelWidth + 45)
+      .attr("width", labelWidth + 15)
       .style("fill", "white")
       .attr("stroke", "black")
       .attr("transform", function (d) {
