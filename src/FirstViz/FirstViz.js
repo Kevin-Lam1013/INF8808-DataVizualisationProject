@@ -20,11 +20,10 @@ function FirstViz() {
   };
 
   const list = (
-    <div>
+    <div className="row" style={{ fontSize: "24px" }}>
       {dataCSV[team]["competitions"].map((e, i) => (
-        <div key={i}>
-          {e.name} : <span style={{ color: "#FF4F00" }}>{e.place}</span>
-          <br />
+        <div className="col-6" key={i}>
+            {e.name} : <span style={{ color: "#FF4F00" }}>{e.place}</span>
         </div>
       ))}
     </div>
@@ -37,15 +36,15 @@ function FirstViz() {
 
     d3.csv(dataCSV[player]["team"]).then(function (d) {
       const temp1 = {
-        Goal: 0,
-        Assist: 0,
+        PlayerGoal: 0,
+        // Assist: 0,
         TeamGoal: 0,
       };
 
       d.forEach((p) => {
         if (p.Player === piePlayer) {
-          temp1.Goal = parseInt(p.Gls);
-          temp1.Assist = parseInt(p.Ast);
+          temp1.PlayerGoal = parseInt(p.Gls)+ parseInt(p.Ast);
+        //   temp1.Assist = parseInt(p.Ast);
           playingTime1.MatchPlayed = parseInt(p.MP);
           playingTime1.MinPlayed = parseInt(p.Min);
         } else if (p.Gls > 0) {
@@ -95,18 +94,29 @@ function FirstViz() {
             <u>{`${league} ranking (points)`}</u>
           </h2>
           <BarChart data={data} selectedTeam={team} />
+          <br />
+          <br />
+          <br />
         </div>
       </div>
       <div className="col-6 d-flex flex-column justify-content-center">
-          <div className="container w-50 m-2 border border-5 border-primary rounded-3"
-          style={{ background: "#E7EFF6" }}>
-            <h2 className="fw-bold">{team}</h2>
-            {list}
-          </div>
-          <div className="container m-2 border border-5 border-primary rounded-3"
-          style={{ background: "#E7EFF6" }}>
-              <h2 className="playerName">{piePlayer} with {team}</h2>
-            <PieChart data={pieData} className="pieChart" />
+        <div
+          className="container m-2 border border-5 border-primary rounded-3"
+          style={{ background: "#E7EFF6" }}
+        >
+          <h2 >{team}</h2>
+          {list}
+
+        </div>
+        <div
+          className="container m-2 border border-5 border-primary rounded-3"
+          style={{ background: "#E7EFF6" }}
+        >
+          <h2 className="playerName">
+            {piePlayer} <br /> with {team}
+          </h2>
+          <PieChart data={pieData} className="pieChart" />
+          
         </div>
       </div>
     </div>

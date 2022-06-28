@@ -3,6 +3,10 @@ import * as d3 from "d3";
 import PieChart from "../components/PieChart.js";
 import franceCSV from "./data/france_2022.csv";
 import senegalCSV from "./data/senegal_2022.csv";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
 
 function SecondViz() {
   const [data1, setData1] = useState([]);
@@ -29,21 +33,18 @@ function SecondViz() {
 
     d3.csv(file).then(function (d) {
       const temp1 = {
-        Goal: 0,
-        Assist: 0,
+        PlayerGoal: 0,
         TeamGoal: 0,
       };
 
       const temp2 = {
-        Goal: 0,
-        Assist: 0,
+        PlayerGoal: 0,
         TeamGoal: 0,
       };
 
       d.forEach((player) => {
         if (player.Player === target1) {
-          temp1.Goal = parseInt(player.Gls);
-          temp1.Assist = parseInt(player.Ast);
+          temp1.PlayerGoal = parseInt(player.Gls) + parseInt(player.Ast);
           playingTime1.MatchPlayed = parseInt(player.MP);
           playingTime1.MinPlayed = parseInt(player.Min);
         } else if (player.Gls > 0) {
@@ -52,8 +53,7 @@ function SecondViz() {
 
         if (target2 !== "") {
           if (player.Player === target2) {
-            temp2.Goal = parseInt(player.Gls);
-            temp2.Assist = parseInt(player.Ast);
+            temp2.PlayerGoal = parseInt(player.Gls) + parseInt(player.Ast);
             playingTime2.MatchPlayed = parseInt(player.MP);
             playingTime2.MinPlayed = parseInt(player.Min);
           } else if (player.Gls > 0) {
@@ -75,42 +75,88 @@ function SecondViz() {
       <h1 className="p-3 fw-bold">National Team Comparison</h1>
 
       <div className="d-flex justify-content-center">
-        <button
-          className="btn btn-outline-info"
-          onClick={() => {
-            setTeam("France");
-            setPlayer1("Kylian Mbappé");
-            setPlayer2("Karim Benzema");
-          }}
-        >
-          France
-        </button>
-        <button
-          className="btn btn-outline-info"
-          onClick={() => {
-            setTeam("Senegal");
-            setPlayer1("Sadio Mané");
-            setPlayer2("");
-          }}
-        >
-          Senegal
-        </button>
+        <FormControl>
+          <RadioGroup
+            row
+            aria-labelledby="demo-row-radio-buttons-group-label"
+            name="row-radio-buttons-group"
+            defaultValue="France"
+          >
+            <FormControlLabel
+              value="France"
+              control={<Radio />}
+              label="France"
+              onClick={() => {
+                setTeam("France");
+                setPlayer1("Kylian Mbappé");
+                setPlayer2("Karim Benzema");
+              }}
+            />
+            <FormControlLabel
+              value="Senegal"
+              control={<Radio />}
+              label="Senegal"
+              onClick={() => {
+                setTeam("Senegal");
+                setPlayer1("Sadio Mané");
+                setPlayer2("");
+              }}
+            />
+          </RadioGroup>
+        </FormControl>
       </div>
 
-      <div>
-        <p>
-          {team === "France"
-            ? "Kylian Mbappé with France national team"
-            : "Sadio Mané with Senegal national team"}
-        </p>
-        <PieChart data={data1} />
-      </div>
-      {team === "France" && (
-        <div>
-          <p>Karim Benzema with France national team</p>
-          <PieChart data={data2} />
+      <div className="row">
+        <div className="col-6"></div>
+        <div className="col-6">
+          <div className="row py-3">barchart</div>
+          <div className="row ">
+            <div className="col-6">
+              <div className="container border border-5 border-primary rounded-3 bg-white">
+                <h2>
+                  {team === "France" ? (
+                    <div>
+                      <h2>
+                        Kylian Mbappé <br />{" "}
+                        <span className="fst-italic h4">
+                          {" "}
+                          with France national team{" "}
+                        </span>
+                      </h2>
+                    </div>
+                  ) : (
+                    <div>
+                      <h2>
+                        Sadio Mané <br />{" "}
+                        <span className="fst-italic h4">
+                          with Senegal national team
+                        </span>{" "}
+                      </h2>
+                    </div>
+                  )}
+                </h2>
+                <PieChart data={data1} />
+              </div>
+            </div>
+            <div className="col-6">
+              {team === "France" && (
+                <div className="container border border-5 border-primary rounded-3 bg-white">
+                  <h2>
+                    Karim Benzema <br />
+                    <span className="fst-italic h4">
+                      with France national team
+                    </span>
+                  </h2>
+                  <PieChart data={data2} />
+                </div>
+              )}
+            </div>
+           
+
+          </div>
         </div>
-      )}
+      </div>
+  
     </div>
   );
 }

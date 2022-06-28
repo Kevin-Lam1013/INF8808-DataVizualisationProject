@@ -1,3 +1,16 @@
 .border-primary{
     border-color: #6497B1 !important;
 }
+
+.btn-outline-info, .btn-outline-info:hover, .btn-outline-info:visited {
+    border-color: #095F78;
+    color: #095F78;
+}
+
+.btn-outline-info:hover, .btn-outline-info:visited {
+    border-color: #095F78;
+    color: #095F78;
+    background-color: white;
+}
+
+
