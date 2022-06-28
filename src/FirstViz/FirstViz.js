@@ -27,7 +27,7 @@ function FirstViz() {
       style={{ fontSize: "24px" }}
     >
       {dataCSV[team]["competitions"].map((e, i) => (
-        <div className="h4" key={i} style={{ fontSize: "1,4vw" }}>
+        <div className="h4 text-start" key={i} style={{ fontSize: "1.2vw" }}>
           <span className="fst-italic"> {e.name} :</span>{" "}
           <span style={{ color: "#FF4F00" }}>{e.place} </span>
         </div>

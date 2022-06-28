@@ -10,6 +10,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import BarChart from "../components/BarChart/BarChart.js";
+import bgImage from "./bg-visu2.png"
 
 function SecondViz() {
   const [data1, setData1] = useState([]);
@@ -91,7 +92,7 @@ function SecondViz() {
         setData2(temp2);
       }
     });
-  }, []);
+  });
 
   return (
     <div className="App row" style={{ background: "#E7EFF6" }}>
@@ -130,33 +131,67 @@ function SecondViz() {
       </div>
 
       <div className="row">
-        <div className="col-6">{/* TOURNAMENT BRACKET */}</div>
         <div className="col-6">
+          <h2 className="fw-bold">
+            {team === "France" ? (
+              <span>
+                2021 UEFA European Championship <br />
+                <span className="fst-italic h4">
+                  (not considered for the Ballon d'Or)
+                </span>
+              </span>
+            ) : (
+              <span>2022 Africa Cup of Nations </span>
+            )}
+          </h2>
+          {/* TOURNAMENT BRACKET */}
+
+          {team === "France" ? (
+              <span className="fst-italic h4 pt-4" style={{ color: "#FF4F00" }}>
+                France is eliminated in the round of 16.
+              </span>
+            ) : (
+              <span className="fst-italic h4 pt-4" style={{ color: "#FF4F00" }}>
+                Senegal won the tournament.
+              </span>
+            )}
+        </div>
+
+        <div className="col-6">
+          <h2 className="fw-bold">
+            2022 World Cup Qualification
+            {team === "France" ? (
+              <span> - Europe</span>
+            ) : (
+              <span> - Africa</span>
+            )}
+          </h2>
+
           {/* Bar Chart */}
-          <div className="row p-4">
+          <div className="row">
             <BarChart
               data={wcqData}
               selectedTeam={team}
               width={800}
-              height={200}
+              height={180}
               maxDomain={20}
             />
 
             {team === "France" ? (
               <span className="fst-italic h4 pt-4" style={{ color: "#FF4F00" }}>
-                France directly qualified for the World Cup after the first
-                round
+                France is directly qualified for the World Cup <br />
+                after the first round.
               </span>
             ) : (
               <span className="fst-italic h4 pt-4" style={{ color: "#FF4F00" }}>
-                Senegal qualified for the World Cup after beating Egypt in the
-                third round
+                Senegal is qualified for the World Cup <br />
+                after beating Egypt in the third round.
               </span>
             )}
           </div>
 
           {/* Pie Charts */}
-          <div className="row p-4">
+          <div className="row">
             <div className="w-50 ">
               <div className="container border border-5 border-primary rounded-3 bg-white">
                 <h2>
@@ -165,7 +200,7 @@ function SecondViz() {
                       <h2 className="pt-1" style={{ color: "#095F78" }}>
                         Kylian Mbappé <br />{" "}
                         <span className="fst-italic h5">
-                          with France national team
+                          with French national team
                         </span>
                       </h2>
                     </div>
@@ -174,7 +209,7 @@ function SecondViz() {
                       <h2 className="pt-1" style={{ color: "#095F78" }}>
                         Sadio Mané <br />{" "}
                         <span className="fst-italic h5">
-                          with Senegal national team
+                          with Senegalese national team
                         </span>{" "}
                       </h2>
                     </div>
@@ -209,7 +244,7 @@ function SecondViz() {
                   <h2 className="pt-1" style={{ color: "#095F78" }}>
                     Karim Benzema <br />
                     <span className="fst-italic h5">
-                      with France national team
+                      with French national team
                     </span>
                   </h2>
                   <ul className="w-75 flex-wrap float-end pt-3 text-start">
