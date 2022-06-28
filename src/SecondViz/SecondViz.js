@@ -109,24 +109,23 @@ function SecondViz() {
       <div className="row">
         <div className="col-6"></div>
         <div className="col-6">
-          <div className="row py-3">barchart</div>
-          <div className="row ">
-            <div className="col-6">
+          <div className="row p-2">barchart</div>
+          <div className="row  p-2 ">
+            <div className="col-6 ">
               <div className="container border border-5 border-primary rounded-3 bg-white">
                 <h2>
                   {team === "France" ? (
                     <div>
-                      <h2>
+                      <h2 className="pt-1" style={{ color: "#095F78" }}>
                         Kylian Mbappé <br />{" "}
                         <span className="fst-italic h4">
-                          {" "}
-                          with France national team{" "}
+                          with France national team
                         </span>
                       </h2>
                     </div>
                   ) : (
                     <div>
-                      <h2>
+                      <h2 className="pt-1" style={{ color: "#095F78" }}>
                         Sadio Mané <br />{" "}
                         <span className="fst-italic h4">
                           with Senegal national team
@@ -141,7 +140,7 @@ function SecondViz() {
             <div className="col-6">
               {team === "France" && (
                 <div className="container border border-5 border-primary rounded-3 bg-white">
-                  <h2>
+                  <h2 className="pt-1" style={{ color: "#095F78" }}>
                     Karim Benzema <br />
                     <span className="fst-italic h4">
                       with France national team

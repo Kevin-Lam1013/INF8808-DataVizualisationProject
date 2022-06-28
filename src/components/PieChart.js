@@ -8,7 +8,7 @@ function PieChart(props) {
 
   const width = 300,
     height = 300,
-    margin = 40;
+    margin = 25;
   const radius = Math.min(width, height) / 2 - margin;
   const legendLabel = {
     PlayerGoal: "Goals scored or assisted",
@@ -30,7 +30,7 @@ function PieChart(props) {
       .attr("width", width)
       .attr("height", height)
       .append("g")
-      .attr("transform", `translate(${width / 2}, ${height / 2})`);
+      .attr("transform", `translate(${width / 2 }, ${height / 2 - margin})`);
 
     // color scale
     const color = d3
@@ -84,7 +84,7 @@ function PieChart(props) {
       .enter()
       .append("g")
       .attr("transform", function (d, i) {
-        return `translate( ${-70} , ${i * 15 + 120}) `;
+        return `translate( ${-70} , ${i * 15 + 130}) `;
       })
       .attr("class", "legend");
 

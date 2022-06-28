@@ -13,6 +13,8 @@ function FirstViz() {
   const [league, setLeague] = useState("La Liga");
   const [pieData, setPieData] = useState([]);
   const [piePlayer, setPiePlayer] = useState("Karim Benzema");
+  const [matchsPlayed, setMatchsPlayed] = useState(0);
+  const [minutesPlayed, setMinutesPlayed] = useState(0);
 
   var playingTime1 = {
     MatchPlayed: 0,
@@ -20,10 +22,14 @@ function FirstViz() {
   };
 
   const list = (
-    <div className="row" style={{ fontSize: "24px" }}>
+    <div
+      className="d-flex flex-column h-75 justify-content-between"
+      style={{ fontSize: "24px" }}
+    >
       {dataCSV[team]["competitions"].map((e, i) => (
-        <div className="col-6" key={i}>
-            {e.name} : <span style={{ color: "#FF4F00" }}>{e.place}</span>
+        <div className="h4" key={i}>
+          <span className="fst-italic"> {e.name} :</span>{" "}
+          <span style={{ color: "#FF4F00" }}>{e.place} </span>
         </div>
       ))}
     </div>
@@ -37,14 +43,14 @@ function FirstViz() {
     d3.csv(dataCSV[player]["team"]).then(function (d) {
       const temp1 = {
         PlayerGoal: 0,
-        // Assist: 0,
         TeamGoal: 0,
       };
 
       d.forEach((p) => {
         if (p.Player === piePlayer) {
-          temp1.PlayerGoal = parseInt(p.Gls)+ parseInt(p.Ast);
-        //   temp1.Assist = parseInt(p.Ast);
+          setMatchsPlayed(parseInt(p.MP));
+          setMinutesPlayed(parseInt(p.Min));
+          temp1.PlayerGoal = parseInt(p.Gls) + parseInt(p.Ast);
           playingTime1.MatchPlayed = parseInt(p.MP);
           playingTime1.MinPlayed = parseInt(p.Min);
         } else if (p.Gls > 0) {
@@ -88,36 +94,54 @@ function FirstViz() {
         />
       </div>
 
-      <div className="col-6">
+      <div className="col-6 pb-3">
         <div className="barChart">
           <h2 className="p-2">
             <u>{`${league} ranking (points)`}</u>
           </h2>
           <BarChart data={data} selectedTeam={team} />
-          <br />
-          <br />
-          <br />
         </div>
       </div>
-      <div className="col-6 d-flex flex-column justify-content-center">
+      <div className="col-6 pb-3 d-flex flex-row ">
         <div
-          className="container m-2 border border-5 border-primary rounded-3"
+          className=" align-self-end container h-50 m-2 border border-5 border-primary rounded-3"
           style={{ background: "#E7EFF6" }}
         >
-          <h2 >{team}</h2>
-          {list}
-
-        </div>
-        <div
-          className="container m-2 border border-5 border-primary rounded-3"
-          style={{ background: "#E7EFF6" }}
-        >
-          <h2 className="playerName">
-            {piePlayer} <br /> with {team}
+          <h2 className="pt-1 pb-2" style={{ color: "#095F78" }}>
+            {team}
           </h2>
-          <PieChart data={pieData} className="pieChart" />
-          
+          {list}
         </div>
+
+        <div
+          className="align-self-end container h-75 m-2 border border-5 border-primary rounded-3"
+          style={{ background: "#E7EFF6" }}
+        >
+          <h2 className="pt-1" style={{ color: "#095F78" }}>
+            {piePlayer} <br />
+            <span className="fst-italic h4">with {team}</span>
+          </h2>
+
+          <ul className="w-75 float-end pt-3 text-start">
+            <li>
+              <h5>
+                <span className="fw-bold" style={{ color: "#FF4F00" }}>
+                  {matchsPlayed}
+                </span> appearances
+              </h5>
+            </li>
+            <li>
+              <h5>
+                <span className="fw-bold" style={{ color: "#FF4F00" }}>
+                  {minutesPlayed}
+                </span> minutes played
+              </h5>
+            </li>
+          </ul>
+
+          <PieChart data={pieData} className="pieChart" />
+        </div>
+        <br />
       </div>
     </div>
   );
