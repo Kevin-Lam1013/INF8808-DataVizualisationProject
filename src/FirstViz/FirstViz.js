@@ -23,11 +23,11 @@ function FirstViz() {
 
   const list = (
     <div
-      className="d-flex flex-column h-75 justify-content-between"
+      className="d-flex flex-column h-75 justify-content-evenly"
       style={{ fontSize: "24px" }}
     >
       {dataCSV[team]["competitions"].map((e, i) => (
-        <div className="h4" key={i}>
+        <div className="h4" key={i} style={{ fontSize: "1,4vw" }}>
           <span className="fst-italic"> {e.name} :</span>{" "}
           <span style={{ color: "#FF4F00" }}>{e.place} </span>
         </div>
@@ -99,7 +99,7 @@ function FirstViz() {
           <h2 className="p-2">
             <u>{`${league} ranking (points)`}</u>
           </h2>
-          <BarChart data={data} selectedTeam={team} />
+          <BarChart data={data} selectedTeam={team} width={850} height={500} maxDomain={100} />
         </div>
       </div>
       <div className="col-6 pb-3 d-flex flex-row ">
@@ -114,24 +114,24 @@ function FirstViz() {
         </div>
 
         <div
-          className="align-self-end container h-75 m-2 border border-5 border-primary rounded-3"
-          style={{ background: "#E7EFF6" }}
+          className="align-self-end flex-wrap container m-2 border border-5 border-primary rounded-3"
+          style={{ background: "#E7EFF6", height:"85%" }}
         >
           <h2 className="pt-1" style={{ color: "#095F78" }}>
             {piePlayer} <br />
-            <span className="fst-italic h4">with {team}</span>
+            <span className="fst-italic h5">with {team}</span>
           </h2>
 
-          <ul className="w-75 float-end pt-3 text-start">
+          <ul className="w-75 flex-wrap float-end text-start">
             <li>
-              <h5>
+              <h5 className="">
                 <span className="fw-bold" style={{ color: "#FF4F00" }}>
                   {matchsPlayed}
                 </span> appearances
               </h5>
             </li>
             <li>
-              <h5>
+              <h5 className="">
                 <span className="fw-bold" style={{ color: "#FF4F00" }}>
                   {minutesPlayed}
                 </span> minutes played
@@ -139,7 +139,7 @@ function FirstViz() {
             </li>
           </ul>
 
-          <PieChart data={pieData} className="pieChart" />
+          <PieChart data={pieData} />
         </div>
         <br />
       </div>

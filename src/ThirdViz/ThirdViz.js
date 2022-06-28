@@ -90,26 +90,27 @@ function ThirdViz() {
 
   return (
     <div className="App bg-white row">
+      <h1 className="p-3 fw-bold">Individual Performance</h1>
       <div className="col-9">
         <div className="d-flex flex-column justify-content-center">
-          <h3>Karim Benzema</h3>
+          <h3 style={{ color: "#095F78" }}>Karim Benzema</h3>
           <RadarChart data={benzemaData}></RadarChart>
         </div>
         <div className="d-flex justify-content-evenly">
           <div className="d-flex flex-column justify-content-center">
+            <h3 style={{ color: "#095F78" }}>Kylian Mbappé</h3>
             <RadarChart data={mbappeData}></RadarChart>
-            <h3>Kylian Mbappé</h3>
           </div>
           <div className="d-flex flex-column justify-content-center">
+            <h3 style={{ color: "#095F78" }}>Sadio Mané</h3>
             <RadarChart data={maneData}></RadarChart>
-            <h3>Sadio Mané</h3>
           </div>
         </div>
       </div>
-      <div className="col-3 p-0">
+      <div className="col-3 p-3">
         <div
-          className="container d-flex flex-column justify-content-evenly h-100 rounded-3"
-          style={{ background: "#6497B1" }}
+          className="container d-flex flex-column justify-content-evenly h-100 border border-5 border-primary rounded-3"
+          style={{ background: "#E7EFF6" }}
         >
           <Box>
             <FormControl fullWidth>
