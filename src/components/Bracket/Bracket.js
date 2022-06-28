@@ -1,12 +1,11 @@
 import * as d3 from "d3";
 import React, { useRef, useEffect, useState } from "react";
 import _, { map } from "underscore";
-import styles from "../Bracket/styles.css";
 
-// need to reverse + put in bold target team + 90 degree angle for links
 function Bracket(props) {
   const ref = useRef();
   const [bracketData, setData] = useState({});
+  const [team, setTeam] = useState("");
 
   const width = 600,
     height = 600,
@@ -19,6 +18,13 @@ function Bracket(props) {
     } else {
       setData(props.data);
     }
+
+    if (_.isEqual(props.teamSelected, team)) {
+      return;
+    } else {
+      setTeam(props.teamSelected);
+    }
+
     d3.select(ref.current).selectAll("*").remove();
 
     // append the svg object to the body of the page
@@ -85,16 +91,22 @@ function Bracket(props) {
       .style("fill", "white")
       .attr("stroke", "black")
       .attr("transform", function (d) {
-        return "translate(0,-7)";
+        return "translate(0, -1)";
       })
       .style("stroke-width", 2);
 
     node
       .append("text")
       .attr("dx", -(labelWidth / 2) + 65)
-      .attr("dy", labelHeight / 2 - 5)
+      .attr("dy", labelHeight / 2 - 12)
       .attr("text-anchor", "start")
       .style("font-size", "10px")
+      .style("font-weight", function (d) {
+        return d.data.a === props.teamSelected ? 1000 : 500;
+      })
+      .style("fill", function (d) {
+        return d.data.a === props.teamSelected ? "darkOrange" : "black";
+      })
       .text(function (d) {
         return `${d.data.a} : ${d.data.aScore}`;
       });
@@ -102,9 +114,15 @@ function Bracket(props) {
     node
       .append("text")
       .attr("dx", -(labelWidth / 2) + 65)
-      .attr("dy", labelHeight - 5)
+      .attr("dy", labelHeight - 12)
       .attr("text-anchor", "start")
       .style("font-size", "10px")
+      .style("font-weight", function (d) {
+        return d.data.b === props.teamSelected ? 1000 : 500;
+      })
+      .style("fill", function (d) {
+        return d.data.b === props.teamSelected ? "darkOrange" : "black";
+      })
       .text(function (d) {
         return `${d.data.b} : ${d.data.bScore}`;
       });

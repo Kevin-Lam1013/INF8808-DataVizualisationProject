@@ -127,7 +127,7 @@ function SecondViz() {
       </div>
 
       <div className="bracketContainer">
-        <Bracket data={bracketData} />
+        <Bracket data={bracketData} teamSelected={team} />
       </div>
     </div>
   );
