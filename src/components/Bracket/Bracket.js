@@ -8,7 +8,7 @@ function Bracket(props) {
   const [team, setTeam] = useState("");
 
   const width = 500,
-    height = 700,
+    height = 680,
     labelHeight = 50,
     labelWidth = 120;
 
@@ -30,11 +30,10 @@ function Bracket(props) {
     // append the svg object to the body of the page
     var svg = d3
       .select(ref.current)
-      .attr("width", width + 500)
-      .attr("height", height + 200)
+      .attr("width", width + 250)
+      .attr("height", height )
       .append("g")
-      .attr("transform", "translate(200,0)"); // bit of margin on the left = 40
-
+      .attr("transform", "translate(100,0)"); 
     // Create the cluster layout:
     var cluster = d3.cluster().size([height, width - 25]); // 100 is the margin I will have on the right side
 
