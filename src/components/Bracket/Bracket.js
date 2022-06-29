@@ -51,10 +51,15 @@ function Bracket(props) {
       .style("opacity", 0)
       .attr("class", "tooltip")
       .style("background-color", "white")
+      .style("position", "absolute")
+      .style("width", "48%")
+      .style("text-align", "center")
+      .style("color", "#FF4F00")
       .style("border", "solid")
       .style("border-width", "2px")
       .style("border-radius", "5px")
-      .style("padding", "5px");
+      .style("font-size", "15px")
+      
 
     // Add the links between nodes:
     svg
@@ -194,7 +199,7 @@ function Bracket(props) {
 
   return (
     <div id="container">
-      <svg ref={ref}></svg>
+      <svg ref={ref}> </svg>
     </div>
   );
 }

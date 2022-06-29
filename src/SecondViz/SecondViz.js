@@ -136,8 +136,7 @@ function SecondViz() {
               <span>2022 Africa Cup of Nations  <br /><br /></span>
             )}
           </h2>
-          {/* TOURNAMENT BRACKET */}
-          <Bracket data={bracketData} teamSelected={team} />
+          
 
           {team === "France" ? (
             <span className="fst-italic h4 pt-4" style={{ color: "#FF4F00" }}>
@@ -148,6 +147,8 @@ function SecondViz() {
               Senegal won the tournament.
             </span>
           )}
+          {/* TOURNAMENT BRACKET */}
+          <Bracket data={bracketData} teamSelected={team} />
         </div>
 
         <div className="col-6">
@@ -184,7 +185,7 @@ function SecondViz() {
           </div>
 
           {/* Pie Charts */}
-          <div className="row p-2">
+          <div className="row p-2 pb-5">
             <div className="w-50 ">
               <div className="container border border-5 border-primary rounded-3 bg-white">
                 <h2>
