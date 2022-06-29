@@ -27,14 +27,7 @@ function SecondViz() {
   const [wcqfile, setWcqFile] = useState(wcqFranceCSV);
   const [wcqData, setWcqData] = useState([]);
 
-  var playingTime1 = {
-    MatchPlayed: 0,
-    MinPlayed: 0,
-  };
-  var playingTime2 = {
-    MatchPlayed: 0,
-    MinPlayed: 0,
-  };
+
 
   useEffect(() => {
     if (team === "France") {
@@ -67,8 +60,6 @@ function SecondViz() {
           setMatchsPlayed(parseInt(player.MP));
           setMinutesPlayed(parseInt(player.Min));
           temp1.PlayerGoal = parseInt(player.Gls) + parseInt(player.Ast);
-          playingTime1.MatchPlayed = parseInt(player.MP);
-          playingTime1.MinPlayed = parseInt(player.Min);
         } else if (player.Gls > 0) {
           temp1.TeamGoal += parseInt(player.Gls);
         }
@@ -78,8 +69,6 @@ function SecondViz() {
             setMatchsPlayed2(parseInt(player.MP));
             setMinutesPlayed2(parseInt(player.Min));
             temp2.PlayerGoal = parseInt(player.Gls) + parseInt(player.Ast);
-            playingTime2.MatchPlayed = parseInt(player.MP);
-            playingTime2.MinPlayed = parseInt(player.Min);
           } else if (player.Gls > 0) {
             temp2.TeamGoal += parseInt(player.Gls);
           }
