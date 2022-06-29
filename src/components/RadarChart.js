@@ -1,58 +1,21 @@
 import * as d3 from "d3";
 import React, { useRef } from "react";
 
-// function wrap(text, width) {
-//   text.each(function () {
-//     var text = d3.select(this),
-//       words = text.text().split(/\s+/).reverse(),
-//       word,
-//       line = [],
-//       lineNumber = 0,
-//       lineHeight = 1.4, // ems
-//       y = text.attr("y"),
-//       x = text.attr("x"),
-//       dy = parseFloat(text.attr("dy")),
-//       tspan = text
-//         .text(null)
-//         .append("tspan")
-//         .attr("x", x)
-//         .attr("y", y)
-//         .attr("dy", dy + "em");
-
-//     while ((word = words.pop())) {
-//       line.push(word);
-//       tspan.text(line.join(" "));
-//       if (tspan.node().getComputedTextLength() > width) {
-//         line.pop();
-//         tspan.text(line.join(" "));
-//         line = [word];
-//         tspan = text
-//           .append("tspan")
-//           .attr("x", x)
-//           .attr("y", y)
-//           .attr("dy", ++lineNumber * lineHeight + dy + "em")
-//           .text(word);
-//       }
-//     }
-//   });
-// } //wrap
-
 function RadarChart(props) {
   const ref = useRef();
 
-  const margin = { top: 40, right: 40, bottom: 40, left: 40 },
-    width = 400 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+  const margin = { top: 50, right: 50, bottom: 50, left: 50 },
+    width = 550 - margin.left - margin.right,
+    height = 450 - margin.top - margin.bottom;
 
-
-  d3.select(ref.current).selectAll("*").remove()
+  d3.select(ref.current).selectAll("*").remove();
 
   let svg = d3.select(ref.current).attr("width", width).attr("height", height);
 
   let radialScale = d3
     .scaleLinear()
     .domain([0, 100])
-    .range([0, width / 2 - 60]);
+    .range([0, 100]);
   let ticks = [20, 40, 60, 80, 100];
 
   ticks.forEach((t) =>
@@ -70,7 +33,10 @@ function RadarChart(props) {
       .append("text")
       .attr("x", width / 2 + 5)
       .attr("y", height / 2 - radialScale(t))
+      .transition()
+      .duration(2500)
       .text(t.toString())
+      .attr("opacity", 1)
   );
 
   function angleToCoordinate(angle, value) {
@@ -83,7 +49,13 @@ function RadarChart(props) {
     let ft_name = props.data[i].Statistic;
     let angle = Math.PI / 2 + (2 * Math.PI * i) / props.data.length;
     let line_coordinate = angleToCoordinate(angle, 100);
-    let label_coordinate = angleToCoordinate(angle, 135);
+    let label_coordinate = 0
+    if(i === 0 || i===3){
+      label_coordinate = angleToCoordinate(angle, 140);
+    }
+    else{
+      label_coordinate = angleToCoordinate(angle, 170);
+    }
 
     //draw axis line
     svg
@@ -100,8 +72,11 @@ function RadarChart(props) {
       .attr("x", label_coordinate.x)
       .attr("y", label_coordinate.y)
       .style("text-anchor", "middle")
+      .style("fill", "#095F78")
+      .transition()
+      .duration(2500)
       .text(ft_name)
-      // .call(wrap, 60);
+      .attr("opacity", 1)
   }
 
   let line = d3
@@ -109,25 +84,36 @@ function RadarChart(props) {
     .x((d) => d.x)
     .y((d) => d.y);
 
+  // for the animation
+  let lineStart = d3
+    .line()
+    .x((d) => width / 2)
+    .y((d) => height / 2);
 
-  let coordinates = props.data.map((stat, i)=>{
+  let coordinates = props.data.map((stat, i) => {
     let angle = Math.PI / 2 + (2 * Math.PI * i) / props.data.length;
-    let coordinate = angleToCoordinate(angle, stat.Percentile)
+    let coordinate = angleToCoordinate(angle, stat.Percentile);
     return coordinate;
   });
-  coordinates.push(coordinates[0]) // close the radar
+  coordinates.push(coordinates[0]); // close the radar
 
   //draw the path element
   svg
     .append("path")
     .datum(coordinates)
+    .attr("d", lineStart)
+    .transition()
+    .duration(2500)
     .attr("d", line)
-    .attr("stroke-width", 2)
     .attr("stroke", "#6497B1")
-    .attr("fill", "#E7EFF6")
+    .attr("fill", "#E7EFF6");
+
+  svg
+    .select("path")
+    .attr("stroke-width", 2)
     .attr("stroke-opacity", 1)
-    .attr("fill-opacity", 1)
-    .attr("opacity", 0.5);
+    .attr("fill-opacity", 0.8)
+    .attr("opacity", 0.8);
 
   return (
     <div className="chart">

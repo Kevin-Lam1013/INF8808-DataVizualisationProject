@@ -63,12 +63,24 @@ function ThirdViz() {
 
   useEffect(() => {
     d3.csv(dataBenzemaCSV).then(function (d) {
-      const filteredData = d.filter((stat) => {
+      let filteredData = d.filter((stat) => {
         if (selectedStats.includes(stat.Statistic)) {
           return stat;
         }
       });
-      setBenzemaData(filteredData);
+
+      let orderedData = []
+
+      selectedStats.forEach((statName) => {
+        filteredData.map( (stat)=> {
+          if (stat.Statistic === statName) {
+            orderedData.push(stat);
+          } 
+          return true
+        });
+      });
+      setBenzemaData(orderedData);
+ 
     });
     d3.csv(dataMbappeCSV).then(function (d) {
       const filteredData = d.filter((stat) => {
@@ -76,7 +88,18 @@ function ThirdViz() {
           return stat;
         }
       });
-      setMbappeData(filteredData);
+
+      let orderedData = []
+
+      selectedStats.forEach((statName) => {
+        filteredData.map( (stat)=> {
+          if (stat.Statistic === statName) {
+            orderedData.push(stat);
+          } 
+          return true
+        });
+      });
+      setMbappeData(orderedData);
     });
     d3.csv(dataManeCSV).then(function (d) {
       const filteredData = d.filter((stat) => {
@@ -84,7 +107,18 @@ function ThirdViz() {
           return stat;
         }
       });
-      setManeData(filteredData);
+
+      let orderedData = []
+
+      selectedStats.forEach((statName) => {
+        filteredData.map( (stat)=> {
+          if (stat.Statistic === statName) {
+            orderedData.push(stat);
+          } 
+          return true
+        });
+      });
+      setManeData(orderedData);
     });
   }, [selectedStats]);
 
@@ -93,16 +127,16 @@ function ThirdViz() {
       <h1 className="p-3 fw-bold">Individual Performance</h1>
       <div className="col-9">
         <div className="d-flex flex-column justify-content-center">
-          <h3 style={{ color: "#095F78" }}>Karim Benzema</h3>
+          <h3><u> Karim Benzema </u></h3>
           <RadarChart data={benzemaData}></RadarChart>
         </div>
         <div className="d-flex justify-content-evenly">
           <div className="d-flex flex-column justify-content-center">
-            <h3 style={{ color: "#095F78" }}>Kylian Mbappé</h3>
+            <h3><u>Kylian Mbappé</u></h3>
             <RadarChart data={mbappeData}></RadarChart>
           </div>
           <div className="d-flex flex-column justify-content-center">
-            <h3 style={{ color: "#095F78" }}>Sadio Mané</h3>
+            <h3><u>Sadio Mané</u></h3>
             <RadarChart data={maneData}></RadarChart>
           </div>
         </div>
@@ -127,11 +161,11 @@ function ThirdViz() {
               >
                 {STATS.map((stat) =>
                   selectedStats.includes(stat) ? (
-                    <MenuItem key={stat} value={stat} disabled>
+                    <MenuItem key={`${stat}1`} value={stat} disabled>
                       {stat}
                     </MenuItem>
                   ) : (
-                    <MenuItem key={stat} value={stat}>
+                    <MenuItem key={`${stat}1D`} value={stat}>
                       {stat}
                     </MenuItem>
                   )
@@ -155,11 +189,11 @@ function ThirdViz() {
               >
                 {STATS.map((stat) =>
                   selectedStats.includes(stat) ? (
-                    <MenuItem key={stat} value={stat} disabled>
+                    <MenuItem key={`${stat}2`} value={stat} disabled>
                       {stat}
                     </MenuItem>
                   ) : (
-                    <MenuItem key={stat} value={stat}>
+                    <MenuItem key={`${stat}2`} value={stat}>
                       {stat}
                     </MenuItem>
                   )
@@ -183,11 +217,11 @@ function ThirdViz() {
               >
                 {STATS.map((stat) =>
                   selectedStats.includes(stat) ? (
-                    <MenuItem key={stat} value={stat} disabled>
+                    <MenuItem key={`${stat}3`} value={stat} disabled>
                       {stat}
                     </MenuItem>
                   ) : (
-                    <MenuItem key={stat} value={stat}>
+                    <MenuItem key={`${stat}3`} value={stat}>
                       {stat}
                     </MenuItem>
                   )
@@ -211,11 +245,11 @@ function ThirdViz() {
               >
                 {STATS.map((stat) =>
                   selectedStats.includes(stat) ? (
-                    <MenuItem key={stat} value={stat} disabled>
+                    <MenuItem key={`${stat}4`} value={stat} disabled>
                       {stat}
                     </MenuItem>
                   ) : (
-                    <MenuItem key={stat} value={stat}>
+                    <MenuItem key={`${stat}4`} value={stat}>
                       {stat}
                     </MenuItem>
                   )
@@ -239,11 +273,11 @@ function ThirdViz() {
               >
                 {STATS.map((stat) =>
                   selectedStats.includes(stat) ? (
-                    <MenuItem key={stat} value={stat} disabled>
+                    <MenuItem key={`${stat}5`} value={stat} disabled>
                       {stat}
                     </MenuItem>
                   ) : (
-                    <MenuItem key={stat} value={stat}>
+                    <MenuItem key={`${stat}5`} value={stat}>
                       {stat}
                     </MenuItem>
                   )
@@ -267,11 +301,11 @@ function ThirdViz() {
               >
                 {STATS.map((stat) =>
                   selectedStats.includes(stat) ? (
-                    <MenuItem key={stat} value={stat} disabled>
+                    <MenuItem key={`${stat}6`} value={stat} disabled>
                       {stat}
                     </MenuItem>
                   ) : (
-                    <MenuItem key={stat} value={stat}>
+                    <MenuItem key={`${stat}6`} value={stat}>
                       {stat}
                     </MenuItem>
                   )
