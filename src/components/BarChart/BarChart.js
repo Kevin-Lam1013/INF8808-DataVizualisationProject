@@ -27,7 +27,7 @@ function BarChart(props) {
       .style("border", "none")
       .append("g")
       .attr("transform", `translate(${margin.left}, ${margin.top})`);
-      
+
     const x = d3
       .scaleLinear()
       .domain([0, props.maxDomain])
@@ -62,33 +62,20 @@ function BarChart(props) {
       .data(props.data)
       .enter()
       .append("rect")
-      .attr("x", x(0))
       .attr("y", (d) => y(d.Squad))
-      .attr("width", (d) => x(d.Pts))
       .attr("height", y.bandwidth())
+      .attr("x", x(0))
+      .attr("width", (d) => x(0))
+      .transition()
+      .duration(2500)
+      .attr("width", (d) => x(d.Pts))
       .attr("fill", (d) => {
-        if (d.Squad == props.selectedTeam) {
+        if (d.Squad === props.selectedTeam) {
           return "#FF4F00";
         } else {
           return "#D9D9D9";
         }
       });
-
-    // Animation
-    // svg
-    //   .selectAll("rect")
-    //   .transition()
-    //   .duration(800)
-    //   .attr("x", function (d) {
-    //     return x(d.Pts);
-    //   })
-    //   .attr("width", function (d) {
-    //     return width - y(d.Pts);
-    //   })
-    //   .delay(function (d, i) {
-    //     console.log(i);
-    //     return i * 100;
-    //   });
 
     svg
       .selectAll("myRect")
@@ -101,6 +88,13 @@ function BarChart(props) {
       .attr("y", function (d) {
         return y(d.Squad) + y.bandwidth() / 2 + 4;
       })
+      .attr("x", function (d) {
+        return x(0) + 3;
+      })
+      .style("font-size", "0.8rem")
+      .style("font-family", "Roboto")
+      .transition()
+      .duration(2500)
       //x position is 3 pixels to the right of the bar
       .attr("x", function (d) {
         return x(d.Pts) + 3;
@@ -108,8 +102,8 @@ function BarChart(props) {
       .text(function (d) {
         return d.Pts;
       })
-      .style("font-size", "0.8rem")
-      .style("font-family", "Roboto");
+      .attr("opacity", 1);
+      
 
     return;
   }, [props.data]);
