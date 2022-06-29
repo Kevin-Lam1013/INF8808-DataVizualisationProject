@@ -36,6 +36,11 @@ function FirstViz() {
   );
 
   useEffect(() => {
+    setChartData()
+  }, [player]);
+
+
+  const setChartData = () => {
     d3.csv(dataCSV[player]["ligue"]).then(function (d) {
       setData(d);
     });
@@ -59,7 +64,7 @@ function FirstViz() {
       });
       setPieData(temp1);
     });
-  }, [player]);
+  }
 
   const setSelectedPlayer = (newSelected) => {
     setPlayer(newSelected);

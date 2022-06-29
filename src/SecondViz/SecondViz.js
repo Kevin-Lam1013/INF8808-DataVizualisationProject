@@ -30,14 +30,19 @@ function SecondViz() {
   const [wcqData, setWcqData] = useState([]);
 
   useEffect(() => {
-    if (team === "France") {
-      setFile(franceCSV);
-      setWcqFile(wcqFranceCSV);
-    } else {
-      setFile(senegalCSV);
-      setWcqFile(wcqSenegalCSV);
-    }
+    setChartData()
+  }, [team]);
 
+
+  const changeCountryListener = (team, p1, p2) => {
+    setPlayer1(p1)
+    setPlayer2(p2)
+    setTeam(team);
+    setFile(team === "France" ? franceCSV : senegalCSV)
+    setWcqFile(team === "France" ? wcqFranceCSV : wcqSenegalCSV)
+  }
+
+  const setChartData = () => {
     // Load data for Bar chart
     d3.csv(wcqfile).then(function (d) {
       setWcqData(d);
@@ -84,7 +89,7 @@ function SecondViz() {
       // data for the Bracket
       setBracketData(tournamentBracket[team]);
     });
-  });
+  }
 
   return (
     <div className="App row" style={{ background: "#E7EFF6" }}>
@@ -103,9 +108,7 @@ function SecondViz() {
               control={<Radio />}
               label="France"
               onClick={() => {
-                setTeam("France");
-                setPlayer1("Kylian Mbappé");
-                setPlayer2("Karim Benzema");
+                changeCountryListener("France", "Kylian Mbappé", "Karim Benzema")
               }}
             />
             <FormControlLabel
@@ -113,9 +116,7 @@ function SecondViz() {
               control={<Radio />}
               label="Senegal"
               onClick={() => {
-                setTeam("Senegal");
-                setPlayer1("Sadio Mané");
-                setPlayer2("");
+                changeCountryListener("Senegal", "Sadio Mané")
               }}
             />
           </RadioGroup>
@@ -165,7 +166,7 @@ function SecondViz() {
           <div className="row">
             <BarChart
               data={wcqData}
-              selectedTeam={team}
+              selectedTeam={target1 === 'Kylian Mbappé' ? "France" : "Senegal"}
               width={800}
               height={180}
               maxDomain={20}
