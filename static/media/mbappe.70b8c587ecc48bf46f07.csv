@@ -1,9 +1,6 @@
 Statistic,Per 90,Percentile
 Non-Penalty Goals,0.73,97
 ,,
-xG,0.69,95
-npxG,0.60,97
-xA,0.36,99
 npxG+xA,0.96,99
 Goals,0.83,96
 Shots Total,4.14,97
@@ -152,8 +149,6 @@ Fouls Drawn,1.73,62
 Offsides,1.15,4
 Crosses,2.41,96
 ,,
-Interceptions,0.46,63
-Tackles Won,0.29,24
 Penalty Kicks Won,0.15,96
 Penalty Kicks Conceded,0.00,54
 Own Goals,0.00,52

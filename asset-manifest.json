@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/inf8808e_project/static/css/main.74eaf599.css",
-    "main.js": "/inf8808e_project/static/js/main.09ae54f2.js",
+    "main.css": "/inf8808e_project/static/css/main.a3a7583e.css",
+    "main.js": "/inf8808e_project/static/js/main.17bde711.js",
     "static/js/787.b78dc185.chunk.js": "/inf8808e_project/static/js/787.b78dc185.chunk.js",
     "static/media/PresentationPage.png": "/inf8808e_project/static/media/PresentationPage.42114870bc2f5cfbe4ae.png",
-    "static/media/benzema.png": "/inf8808e_project/static/media/benzema.35ab7c1cfa0e28755d16.png",
-    "static/media/mbappe.png": "/inf8808e_project/static/media/mbappe.e1018769c64cf2b4a63c.png",
-    "static/media/mane.png": "/inf8808e_project/static/media/mane.5023fd7dc92bf32bd41a.png",
-    "static/media/benzema.csv": "/inf8808e_project/static/media/benzema.e121a45d2a8a85d9be99.csv",
-    "static/media/mane.csv": "/inf8808e_project/static/media/mane.80986ba94cd828df1c74.csv",
-    "static/media/mbappe.csv": "/inf8808e_project/static/media/mbappe.0b60b388e15d5615b9a0.csv",
+    "static/media/benzema.png": "/inf8808e_project/static/media/benzema.eef6a06873c1ea8e91d2.png",
+    "static/media/mane.png": "/inf8808e_project/static/media/mane.c78213d0a8e511c91371.png",
+    "static/media/mbappe.png": "/inf8808e_project/static/media/mbappe.bea578938b2f25e0f407.png",
+    "static/media/benzema.csv": "/inf8808e_project/static/media/benzema.7b45c476a6262aa505ec.csv",
+    "static/media/mane.csv": "/inf8808e_project/static/media/mane.fb3730d39d3651cd011e.csv",
+    "static/media/mbappe.csv": "/inf8808e_project/static/media/mbappe.70b8c587ecc48bf46f07.csv",
     "static/media/liv_2021-2022.csv": "/inf8808e_project/static/media/liv_2021-2022.1bbd661bd041ef32f848.csv",
     "static/media/psg_2021-2022.csv": "/inf8808e_project/static/media/psg_2021-2022.b8e10e34bee280175452.csv",
     "static/media/logo.svg": "/inf8808e_project/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
@@ -19,13 +19,15 @@
     "index.html": "/inf8808e_project/index.html",
     "static/media/premierLeague_2021-2022.csv": "/inf8808e_project/static/media/premierLeague_2021-2022.38187886fda8d4e0d98c.csv",
     "static/media/laLiga_2021-2022.csv": "/inf8808e_project/static/media/laLiga_2021-2022.55743237cfef676d0860.csv",
-    "static/media/ligue1_2021-2022.csv": "/inf8808e_project/static/media/ligue1_2021-2022.a2810b2eb0ba0b8dc5d7.csv",
-    "main.74eaf599.css.map": "/inf8808e_project/static/css/main.74eaf599.css.map",
-    "main.09ae54f2.js.map": "/inf8808e_project/static/js/main.09ae54f2.js.map",
+    "static/media/ligue1_2021-2022.csv": "/inf8808e_project/static/media/ligue1_2021-2022.4c2d40d2b18b287eb496.csv",
+    "static/media/WCQ_France.csv": "/inf8808e_project/static/media/WCQ_France.a3256471ac3369401987.csv",
+    "static/media/WCQ_Senegal.csv": "/inf8808e_project/static/media/WCQ_Senegal.2237664e6a7743dfa027.csv",
+    "main.a3a7583e.css.map": "/inf8808e_project/static/css/main.a3a7583e.css.map",
+    "main.17bde711.js.map": "/inf8808e_project/static/js/main.17bde711.js.map",
     "787.b78dc185.chunk.js.map": "/inf8808e_project/static/js/787.b78dc185.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.74eaf599.css",
-    "static/js/main.09ae54f2.js"
+    "static/css/main.a3a7583e.css",
+    "static/js/main.17bde711.js"
   ]
 }
