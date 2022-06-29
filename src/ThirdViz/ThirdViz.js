@@ -89,7 +89,7 @@ function ThirdViz() {
 
   return (
     <div className="App bg-white row">
-      <h1 className="p-3 fw-bold">Individual Performance</h1>
+      <h1 className="p-3 fw-bold">Individual Performance By Percentiles</h1>
       <div className="col-9">
         <div className="d-flex flex-column justify-content-center">
           <h3><u> Karim Benzema </u></h3>
