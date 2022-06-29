@@ -30,15 +30,12 @@ function PieChart(props) {
       .attr("width", width)
       .attr("height", height)
       .append("g")
-      .attr("transform", `translate(${width / 2 }, ${height / 2 - margin})`);
+      .attr("transform", `translate(${width / 2}, ${height / 2 - margin})`);
 
     // color scale
     const color = d3
       .scaleOrdinal()
-      .domain([
-        "Goals scored or assisted",
-        "Goals scored by the team",
-      ])
+      .domain(["Goals scored or assisted", "Goals scored by the team"])
       .range(["#FF4F00", "#D9D9D9"]);
 
     // shape helper to build pie
@@ -55,13 +52,10 @@ function PieChart(props) {
       .selectAll("pie")
       .data(data_ready)
       .join("path")
-      // .transition()
-      // .duration(1000)
       .attr("d", arcGenerator)
       .attr("fill", function (d) {
         return color(d.data[1]);
-      })
-      // .style("opacity", 1);
+      });
 
     // Annotation
     svg

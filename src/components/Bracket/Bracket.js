@@ -31,9 +31,9 @@ function Bracket(props) {
     var svg = d3
       .select(ref.current)
       .attr("width", width + 250)
-      .attr("height", height )
+      .attr("height", height)
       .append("g")
-      .attr("transform", "translate(100,0)"); 
+      .attr("transform", "translate(100,0)");
     // Create the cluster layout:
     var cluster = d3.cluster().size([height, width - 25]); // 100 is the margin I will have on the right side
 
@@ -43,6 +43,18 @@ function Bracket(props) {
     });
 
     cluster(root);
+
+    // Create tooltip
+    var Tooltip = d3
+      .select("#container")
+      .append("div")
+      .style("opacity", 0)
+      .attr("class", "tooltip")
+      .style("background-color", "white")
+      .style("border", "solid")
+      .style("border-width", "2px")
+      .style("border-radius", "5px")
+      .style("padding", "5px");
 
     // Add the links between nodes:
     svg
@@ -88,11 +100,50 @@ function Bracket(props) {
       .attr("height", labelHeight)
       .attr("width", labelWidth + 15)
       .style("fill", "white")
-      .attr("stroke", "black")
+      .style("opacity", 0.8)
       .attr("transform", function (d) {
         return "translate(0, -1)";
       })
-      .style("stroke-width", 2);
+      .on("mouseover", function (d) {
+        Tooltip.style("opacity", 1);
+        d3.select(this).style("stroke", "black").style("opacity", 1);
+      })
+      .on("mousemove", function (d) {
+        const target = d.target.__data__.data;
+        console.log(props.teamSelected);
+        Tooltip.html(() => {
+          var content = "not playing";
+
+          if (
+            target.a === props.teamSelected ||
+            target.b === props.teamSelected
+          ) {
+            content =
+              props.teamSelected === "France"
+                ? "Benzema scored " +
+                  target.benzemaGls +
+                  " and assisted " +
+                  target.benzemaAst +
+                  " goal(s). <br> Mbappé scored " +
+                  target.mbappeGls +
+                  " and assisted " +
+                  target.mbappeAst +
+                  " goal(s)."
+                : "Mané scored " +
+                  target.maneGls +
+                  " and assisted " +
+                  target.maneAst +
+                  " goal(s).";
+          }
+          return content;
+        })
+          .style("left", d3.pointer[0] + 70)
+          .style("top", d3.pointer[1]);
+      })
+      .on("mouseleave", function (d) {
+        Tooltip.style("opacity", 0);
+        d3.select(this).style("stroke", "none").style("opacity", 0.8);
+      });
 
     node
       .append("text")
