@@ -10,11 +10,14 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import BarChart from "../components/BarChart/BarChart.js";
-import bgImage from "./bg-visu2.png"
+import bgImage from "./bg-visu2.png";
+import tournamentBracket from "./data/dataBracket.js";
+import Bracket from "../components/Bracket/Bracket.js";
 
 function SecondViz() {
   const [data1, setData1] = useState([]);
   const [data2, setData2] = useState([]);
+  const [bracketData, setBracketData] = useState(tournamentBracket["France"]);
   const [target1, setPlayer1] = useState("Kylian Mbappé");
   const [target2, setPlayer2] = useState("Karim Benzema");
   const [team, setTeam] = useState("France");
@@ -26,8 +29,6 @@ function SecondViz() {
 
   const [wcqfile, setWcqFile] = useState(wcqFranceCSV);
   const [wcqData, setWcqData] = useState([]);
-
-
 
   useEffect(() => {
     if (team === "France") {
@@ -80,6 +81,8 @@ function SecondViz() {
       if (target2 !== "") {
         setData2(temp2);
       }
+
+      setBracketData(tournamentBracket[team]);
     });
   });
 
@@ -134,16 +137,17 @@ function SecondViz() {
             )}
           </h2>
           {/* TOURNAMENT BRACKET */}
+          <Bracket data={bracketData} teamSelected={team} />
 
           {team === "France" ? (
-              <span className="fst-italic h4 pt-4" style={{ color: "#FF4F00" }}>
-                France is eliminated in the round of 16.
-              </span>
-            ) : (
-              <span className="fst-italic h4 pt-4" style={{ color: "#FF4F00" }}>
-                Senegal won the tournament.
-              </span>
-            )}
+            <span className="fst-italic h4 pt-4" style={{ color: "#FF4F00" }}>
+              France is eliminated in the round of 16.
+            </span>
+          ) : (
+            <span className="fst-italic h4 pt-4" style={{ color: "#FF4F00" }}>
+              Senegal won the tournament.
+            </span>
+          )}
         </div>
 
         <div className="col-6">
@@ -254,7 +258,7 @@ function SecondViz() {
                       </h5>
                     </li>
                   </ul>
-                  <PieChart data={data2} />
+                  <PieChart data={data2} style={{ width: "100%" }} />
                 </div>
               )}
             </div>
