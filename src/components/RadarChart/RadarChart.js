@@ -1,38 +1,6 @@
 import * as d3 from "d3";
 import React, { useRef } from "react";
 
-function wrap(text, width) {
-  text.each(function () {
-      var text = d3.select(this),
-          words = text.text().split(/\s+/).reverse(),
-          word,
-          line = [],
-          lineNumber = 0,
-          lineHeight = 1.1, // ems
-          x = text.attr("x"),
-          y = text.attr("y"),
-          dy = 0, //parseFloat(text.attr("dy")),
-          tspan = text.text(null)
-                      .append("tspan")
-                      .attr("x", x)
-                      .attr("y", y)
-                      .attr("dy", dy + "em");
-      while (word = words.pop()) {
-          line.push(word);
-          tspan.text(line.join(" "));
-          if (tspan.node().getComputedTextLength() > width) {
-              line.pop();
-              tspan.text(line.join(" "));
-              line = [word];
-              tspan = text.append("tspan")
-                          .attr("x", x)
-                          .attr("y", y)
-                          .attr("dy", ++lineNumber * lineHeight + dy + "em")
-                          .text(word);
-          }
-      }
-  });
-}
 
 function RadarChart(props) {
   const ref = useRef();
@@ -110,7 +78,6 @@ function RadarChart(props) {
       .duration(2500)
       .attr("opacity", 1)
       .text(ft_name)
-      .call(wrap, 30)
   }
 
   let line = d3
@@ -129,7 +96,7 @@ function RadarChart(props) {
     let coordinate = angleToCoordinate(angle, stat.Percentile);
     return coordinate;
   });
-  coordinates.push(coordinates[0]); // close the radar
+  coordinates.push(coordinates[0]); // close the radar line
 
   //draw the path element
   svg

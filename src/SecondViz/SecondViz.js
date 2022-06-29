@@ -81,6 +81,7 @@ function SecondViz() {
         setData2(temp2);
       }
 
+      // data for the Bracket
       setBracketData(tournamentBracket[team]);
     });
   });
@@ -183,7 +184,7 @@ function SecondViz() {
           </div>
 
           {/* Pie Charts */}
-          <div className="row">
+          <div className="row p-2">
             <div className="w-50 ">
               <div className="container border border-5 border-primary rounded-3 bg-white">
                 <h2>

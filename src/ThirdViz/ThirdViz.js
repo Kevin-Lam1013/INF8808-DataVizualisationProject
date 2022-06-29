@@ -165,7 +165,7 @@ function ThirdViz() {
                       {stat}
                     </MenuItem>
                   ) : (
-                    <MenuItem key={`${stat}1D`} value={stat}>
+                    <MenuItem key={`${stat}1`} value={stat}>
                       {stat}
                     </MenuItem>
                   )
