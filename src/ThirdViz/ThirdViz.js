@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as d3 from "d3";
-import RadarChart from "../components/RadarChart.js";
+import RadarChart from "../components/RadarChart/RadarChart.js";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
