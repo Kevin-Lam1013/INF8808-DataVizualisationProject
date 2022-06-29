@@ -3,6 +3,8 @@ import React, { useRef, useEffect, useState } from "react";
 import _, { map } from "underscore";
 import styles from "../BarChart/styles.css";
 
+
+
 function BarChart(props) {
   const ref = useRef();
 

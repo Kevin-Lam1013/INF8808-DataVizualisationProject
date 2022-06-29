@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useState } from "react";
 import * as d3 from "d3";
-import PieChart from "../components/PieChart.js";
+import PieChart from "../components/PieChart/PieChart.js";
 import franceCSV from "./data/france_2022.csv";
 import senegalCSV from "./data/senegal_2022.csv";
 import wcqFranceCSV from "./data/WCQ_France.csv";
@@ -10,7 +10,6 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import BarChart from "../components/BarChart/BarChart.js";
-import bgImage from "./bg-visu2.png";
 import tournamentBracket from "./data/dataBracket.js";
 import Bracket from "../components/Bracket/Bracket.js";
 
@@ -133,7 +132,7 @@ function SecondViz() {
                 </span>
               </span>
             ) : (
-              <span>2022 Africa Cup of Nations </span>
+              <span>2022 Africa Cup of Nations  <br /><br /></span>
             )}
           </h2>
           {/* TOURNAMENT BRACKET */}

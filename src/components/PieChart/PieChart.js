@@ -55,13 +55,13 @@ function PieChart(props) {
       .selectAll("pie")
       .data(data_ready)
       .join("path")
-      // .transition()
-      // .duration(1000)
       .attr("d", arcGenerator)
       .attr("fill", function (d) {
         return color(d.data[1]);
       })
-      // .style("opacity", 1);
+      .transition()
+      .duration(2500)
+      .attr("opacity", 1);
 
     // Annotation
     svg
@@ -75,7 +75,10 @@ function PieChart(props) {
         return `translate(${arcGenerator.centroid(d)})`;
       })
       .style("text-anchor", "middle")
-      .style("font-size", 17);
+      .style("font-size", 17)
+      .transition()
+      .duration(2500)
+      .attr("opacity", 1);
 
     // Legend
     const legend = svg

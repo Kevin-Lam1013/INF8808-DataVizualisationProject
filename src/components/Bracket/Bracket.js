@@ -31,9 +31,9 @@ function Bracket(props) {
     var svg = d3
       .select(ref.current)
       .attr("width", width + 250)
-      .attr("height", height )
+      .attr("height", height)
       .append("g")
-      .attr("transform", "translate(100,0)"); 
+      .attr("transform", "translate(100,0)");
     // Create the cluster layout:
     var cluster = d3.cluster().size([height, width - 25]); // 100 is the margin I will have on the right side
 
@@ -71,7 +71,10 @@ function Bracket(props) {
         );
       })
       .style("fill", "none")
-      .attr("stroke", "#A3A6A8");
+      .attr("stroke", "#A3A6A8")
+      .transition()
+      .duration(2500)
+      .attr("opacity", 1);
 
     // Add a circle for each node.
     var node = svg
@@ -92,14 +95,17 @@ function Bracket(props) {
       .attr("transform", function (d) {
         return "translate(0, -1)";
       })
-      .style("stroke-width", 2);
+      .style("stroke-width", 2)
+      .transition()
+      .duration(2500)
+      .attr("opacity", 1);
 
     node
       .append("text")
       .attr("dx", -(labelWidth / 2) + 65)
       .attr("dy", labelHeight / 2 - 12)
       .attr("text-anchor", "start")
-      .style("font-size", "10px")
+      .style("font-size", "11px")
       .style("font-weight", function (d) {
         return d.data.a === props.teamSelected ? 1000 : 500;
       })
@@ -108,14 +114,17 @@ function Bracket(props) {
       })
       .text(function (d) {
         return `${d.data.a} : ${d.data.aScore}`;
-      });
+      })
+      .transition()
+      .duration(2500)
+      .attr("opacity", 1);
 
     node
       .append("text")
       .attr("dx", -(labelWidth / 2) + 65)
       .attr("dy", labelHeight - 12)
       .attr("text-anchor", "start")
-      .style("font-size", "10px")
+      .style("font-size", "11px")
       .style("font-weight", function (d) {
         return d.data.b === props.teamSelected ? 1000 : 500;
       })
@@ -124,7 +133,10 @@ function Bracket(props) {
       })
       .text(function (d) {
         return `${d.data.b} : ${d.data.bScore}`;
-      });
+      })
+      .transition()
+      .duration(2500)
+      .attr("opacity", 1);
 
     return;
   }, [props.data]);

@@ -1,11 +1,44 @@
 import * as d3 from "d3";
 import React, { useRef } from "react";
 
+function wrap(text, width) {
+  text.each(function () {
+      var text = d3.select(this),
+          words = text.text().split(/\s+/).reverse(),
+          word,
+          line = [],
+          lineNumber = 0,
+          lineHeight = 1.1, // ems
+          x = text.attr("x"),
+          y = text.attr("y"),
+          dy = 0, //parseFloat(text.attr("dy")),
+          tspan = text.text(null)
+                      .append("tspan")
+                      .attr("x", x)
+                      .attr("y", y)
+                      .attr("dy", dy + "em");
+      while (word = words.pop()) {
+          line.push(word);
+          tspan.text(line.join(" "));
+          if (tspan.node().getComputedTextLength() > width) {
+              line.pop();
+              tspan.text(line.join(" "));
+              line = [word];
+              tspan = text.append("tspan")
+                          .attr("x", x)
+                          .attr("y", y)
+                          .attr("dy", ++lineNumber * lineHeight + dy + "em")
+                          .text(word);
+          }
+      }
+  });
+}
+
 function RadarChart(props) {
   const ref = useRef();
 
   const margin = { top: 50, right: 50, bottom: 50, left: 50 },
-    width = 550 - margin.left - margin.right,
+    width = 650 - margin.left - margin.right,
     height = 450 - margin.top - margin.bottom;
 
   d3.select(ref.current).selectAll("*").remove();
@@ -75,8 +108,9 @@ function RadarChart(props) {
       .style("fill", "#095F78")
       .transition()
       .duration(2500)
-      .text(ft_name)
       .attr("opacity", 1)
+      .text(ft_name)
+      .call(wrap, 30)
   }
 
   let line = d3

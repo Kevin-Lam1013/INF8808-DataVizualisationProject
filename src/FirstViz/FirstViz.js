@@ -4,7 +4,7 @@ import * as d3 from "d3";
 import BarChart from "../components/BarChart/BarChart.js";
 import PlayerSelector from "../components/PlayerSelector/PlayerSelector.js";
 import dataCSV from "./data/data.js";
-import PieChart from "../components/PieChart";
+import PieChart from "../components/PieChart/PieChart.js";
 
 function FirstViz() {
   const [data, setData] = useState([]);
