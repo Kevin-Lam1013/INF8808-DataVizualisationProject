@@ -3,35 +3,30 @@
     "b": "England",
     "aScore": "1 (3)",
     "bScore": "1 (2)",
-    "target": false,
     "children": [
         {
             "a": "Italy",
             "b": "Spain",
             "aScore": "1 (4)",
             "bScore": "1 (2)",
-            "target": false,
             "children": [
                 {
                     "a": "Belgium",
                     "b": "Italy",
                     "aScore": 1,
                     "bScore": 2,
-                    "target": false,
                     "children": [
                         {
                             "a": "Belgium",
                             "b": "Portugal",
                             "aScore": 1,
-                            "bScore": 0,
-                            "target": false
+                            "bScore": 0
                         },
                         {
                             "a": "Italy",
                             "b": "Austria",
                             "aScore": 2,
-                            "bScore": 1,
-                            "target": false
+                            "bScore": 1
                         }
                     ]
                 },
@@ -40,21 +35,22 @@
                     "b": "Spain",
                     "aScore": "1 (1)",
                     "bScore": "1 (3)",
-                    "target": false,
                     "children": [
                         {
                             "a": "France",
                             "b": "Switzerland",
                             "aScore": "3 (4)",
                             "bScore": "3 (5)",
-                            "target": true
+                            "mbappeGls": "0",
+                            "mbappeAst": "1",
+                            "benzemaGls": "2",
+                            "benzemaAst": "0"
                         },
                         {
                             "a": "Croatia",
                             "b": "Spain",
                             "aScore": 3,
-                            "bScore": 5,
-                            "target": false
+                            "bScore": 5
                         }
                     ]
                 }
@@ -65,28 +61,24 @@
             "b": "Danmark",
             "aScore": 2,
             "bScore": 1,
-            "target": false,
             "children": [
                 {
                     "a": "Ukraine",
                     "b": "England",
                     "aScore": 0,
                     "bScore": 4,
-                    "target": false,
                     "children": [
                         {
                             "a": "Sweden",
                             "b": "Ukraine",
                             "aScore": 1,
-                            "bScore": 2,
-                            "target": false
+                            "bScore": 2
                         },
                         {
                             "a": "England",
                             "b": "Germany",
                             "aScore": 2,
-                            "bScore": 0,
-                            "target": false
+                            "bScore": 0
                         }
                     ]
                 },
@@ -95,21 +87,18 @@
                     "b": "Danmark",
                     "aScore": 1,
                     "bScore": 2,
-                    "target": false,
                     "children": [
                         {
                             "a": "Netherlands",
                             "b": "Czech Republic",
                             "aScore": 0,
-                            "bScore": 2,
-                            "target": false
+                            "bScore": 2
                         },
                         {
                             "a": "Wales",
                             "b": "Danmark",
                             "aScore": 0,
-                            "bScore": 4,
-                            "target": false
+                            "bScore": 4
                         }
                     ]
                 }

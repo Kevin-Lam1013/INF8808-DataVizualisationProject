@@ -44,6 +44,18 @@ function Bracket(props) {
 
     cluster(root);
 
+    // Create tooltip
+    var Tooltip = d3
+      .select("#container")
+      .append("div")
+      .style("opacity", 0)
+      .attr("class", "tooltip")
+      .style("background-color", "white")
+      .style("border", "solid")
+      .style("border-width", "2px")
+      .style("border-radius", "5px")
+      .style("padding", "5px");
+
     // Add the links between nodes:
     svg
       .selectAll("path")
@@ -91,14 +103,53 @@ function Bracket(props) {
       .attr("height", labelHeight)
       .attr("width", labelWidth + 15)
       .style("fill", "white")
-      .attr("stroke", "black")
+      .style("opacity", 0.8)
       .attr("transform", function (d) {
         return "translate(0, -1)";
       })
-      .style("stroke-width", 2)
-      .transition()
-      .duration(2500)
-      .attr("opacity", 1);
+      .on("mouseover", function (d) {
+        
+        Tooltip.style("opacity", 1);
+        d3.select(this).style("stroke", "black").style("opacity", 1);
+      })
+      .on("mousemove", function (d) {
+        const target = d.target.__data__.data;
+        console.log(props.teamSelected);
+
+        Tooltip.html(() => {
+          var content = "";
+
+          if (
+            target.a === props.teamSelected ||
+            target.b === props.teamSelected
+          ) {
+            content =
+              props.teamSelected === "France"
+                ? "Benzema scored " +
+                  target.benzemaGls +
+                  " and assisted " +
+                  target.benzemaAst +
+                  "<br> Mbappé scored " +
+                  target.mbappeGls +
+                  " and assisted " +
+                  target.mbappeAst
+                : "Mané scored " +
+                  target.maneGls +
+                  " and assisted " +
+                  target.maneAst;
+          }
+          else{
+            Tooltip.style("opacity", 0);
+          }
+          return content;
+        })
+          .style("left", d3.pointer[0] + 70)
+          .style("top", d3.pointer[1])
+      })
+      .on("mouseleave", function (d) {
+        Tooltip.style("opacity", 0);
+        d3.select(this).style("stroke", "none").style("opacity", 0.8);
+      });
 
     node
       .append("text")
