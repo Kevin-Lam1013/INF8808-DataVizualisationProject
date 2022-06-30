@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/inf8808e_project/static/css/main.a3a7583e.css",
-    "main.js": "/inf8808e_project/static/js/main.17bde711.js",
+    "main.js": "/inf8808e_project/static/js/main.fa6bc75f.js",
     "static/js/787.b78dc185.chunk.js": "/inf8808e_project/static/js/787.b78dc185.chunk.js",
     "static/media/PresentationPage.png": "/inf8808e_project/static/media/PresentationPage.42114870bc2f5cfbe4ae.png",
     "static/media/benzema.png": "/inf8808e_project/static/media/benzema.eef6a06873c1ea8e91d2.png",
@@ -23,11 +23,11 @@
     "static/media/WCQ_France.csv": "/inf8808e_project/static/media/WCQ_France.a3256471ac3369401987.csv",
     "static/media/WCQ_Senegal.csv": "/inf8808e_project/static/media/WCQ_Senegal.2237664e6a7743dfa027.csv",
     "main.a3a7583e.css.map": "/inf8808e_project/static/css/main.a3a7583e.css.map",
-    "main.17bde711.js.map": "/inf8808e_project/static/js/main.17bde711.js.map",
+    "main.fa6bc75f.js.map": "/inf8808e_project/static/js/main.fa6bc75f.js.map",
     "787.b78dc185.chunk.js.map": "/inf8808e_project/static/js/787.b78dc185.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a3a7583e.css",
-    "static/js/main.17bde711.js"
+    "static/js/main.fa6bc75f.js"
   ]
 }
