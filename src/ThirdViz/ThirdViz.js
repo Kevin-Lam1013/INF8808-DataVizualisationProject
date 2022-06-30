@@ -33,7 +33,6 @@ function ThirdViz() {
 
   useEffect(() => {
     setChartData()
-    console.log(benzemaData, maneData, mbappeData)
   }, [selectedStats]);
 
 

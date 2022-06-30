@@ -80,7 +80,7 @@ function Bracket(props) {
           " " +
           (width - d.parent.y) +
           "," +
-          d.parent.x + // 50 and 150 are coordinates of inflexion, play with it to change links shape
+          d.parent.x + 
           " " +
           (width - d.parent.y) +
           "," +
@@ -119,11 +119,8 @@ function Bracket(props) {
       })
       .on("mousemove", function (d) {
         const target = d.target.__data__.data;
-        console.log(props.teamSelected);
-
         Tooltip.html(() => {
           var content = "";
-
           if (
             target.a === props.teamSelected ||
             target.b === props.teamSelected
